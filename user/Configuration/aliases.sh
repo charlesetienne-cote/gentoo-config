@@ -1,35 +1,11 @@
 alias neofetch="neowofetch"
 alias sherby-vpn="openconnect-sso --server rpv.usherbrooke.ca"
+alias update-config="$GENTOO_CONFIG_DIR/apply-config.sh"
 
 #Si conflit:
 #emerge --ask --verbose --update --deep --newuse --with-bdeps=y --ignore-world *PaquetEnConflit*
 #revdep-rebuild --pretend
 #revdep-rebuild
-
-update () {
-	local WHOAMI=$(whoami)
-	if [ $WHOAMI = 'root' ]; then
-		echo "You can't do this as root"
-	else
-		doas bash -c "\
-		eix-sync;\
-		emerge --ask --verbose --update --keep-going --backtrack=100 --deep --newuse --with-bdeps=y @world;\
-		doas -u $WHOAMI pipx upgrade-all"
-	fi
-}
-
-update-retry () {
-	local WHOAMI=$(whoami)
-	if [ $WHOAMI = 'root' ]; then
-		echo "You can't do this as root"
-	else
-		doas bash -c "\
-		until emerge --verbose --update --backtrack=100 --deep --newuse --with-bdeps=y --jobs=1 @world;\
-		do\
-			doas -u $WHOAMI echo \"Retrying at \`date -Iminutes\`\";\
-		done"
-	fi
-}
 
 cleanup () {
 	local WHOAMI=$(whoami)
@@ -58,6 +34,37 @@ snapshot () {
 		doas -u $WHOAMI echo "Snapshot description: ";\
 		read description;\
 		snapper --config root create --read-write --description \$description"
+	fi
+}
+
+update () {
+	local WHOAMI=$(whoami)
+	if [ $WHOAMI = 'root' ]; then
+		echo "You can't do this as root"
+	else
+		doas bash -c "\
+		eix-sync;\
+		emerge --ask --verbose --update --keep-going --backtrack=100 --deep --newuse --with-bdeps=y @world;\
+		doas -u $WHOAMI pipx upgrade-all"
+	fi
+}
+
+update-firefox () {
+	local WHOAMI=$(whoami)
+	if [ $WHOAMI = 'root' ]; then
+		echo "You can't do this as root"
+	else
+		doas bash -c "\
+		cp --force --reflink=always /home/$WHOAMI/Configuration/policies.json /usr/lib64/firefox/distribution/policies.json;\
+		doas -u $WHOAMI rm --recursive --force /home/$WHOAMI/.local/share/firefoxpwa/runtime/*;\
+		doas -u $WHOAMI cp --recursive --force --reflink=always /usr/lib64/firefox/* /home/$WHOAMI/.local/share/firefoxpwa/runtime;\
+		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.mozilla/firefox/tiuh6kpf.default;\
+		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.local/share/firefoxpwa/profiles/01HJ1KP19PYVD4GAMRV06VD3B4;\
+		cd /home/$WHOAMI/Git/FreeTubeAndroid;\
+		doas -u $WHOAMI yarn --pure-lockfile clean;\
+		doas -u $WHOAMI yarn --pure-lockfile upgrade;\
+		doas -u $WHOAMI yarn --pure-lockfile pack:web;\
+		doas -u $WHOAMI echo \"Check changelog (https://github.com/arkenfox/user.js/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Achangelog)\""
 	fi
 }
 
@@ -91,21 +98,15 @@ update-kernel () {
 	fi
 }
 
-update-firefox () {
+update-retry () {
 	local WHOAMI=$(whoami)
 	if [ $WHOAMI = 'root' ]; then
 		echo "You can't do this as root"
 	else
 		doas bash -c "\
-		cp --force --reflink=always /home/$WHOAMI/Configuration/policies.json /usr/lib64/firefox/distribution/policies.json;\
-		doas -u $WHOAMI rm --recursive --force /home/$WHOAMI/.local/share/firefoxpwa/runtime/*;\
-		doas -u $WHOAMI cp --recursive --force --reflink=always /usr/lib64/firefox/* /home/$WHOAMI/.local/share/firefoxpwa/runtime;\
-		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.mozilla/firefox/tiuh6kpf.default;\
-		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.local/share/firefoxpwa/profiles/01HJ1KP19PYVD4GAMRV06VD3B4;\
-		cd /home/$WHOAMI/Git/FreeTubeAndroid;\
-		doas -u $WHOAMI yarn --pure-lockfile clean;\
-		doas -u $WHOAMI yarn --pure-lockfile upgrade;\
-		doas -u $WHOAMI yarn --pure-lockfile pack:web;\
-		doas -u $WHOAMI echo \"Check changelog (https://github.com/arkenfox/user.js/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Achangelog)\""
+		until emerge --verbose --update --backtrack=100 --deep --newuse --with-bdeps=y --jobs=1 @world;\
+		do\
+			doas -u $WHOAMI echo \"Retrying at \`date -Iminutes\`\";\
+		done"
 	fi
 }
