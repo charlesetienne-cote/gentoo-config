@@ -1,0 +1,112 @@
+app-admin/keepassxc -network
+
+app-crypt/qca qt6 qt5
+app-crypt/gcr gtk
+app-crypt/gnupg -wks
+
+app-editors/neovim -lto -nvimpager
+
+app-office/libreoffice -base clang pdfimport kde
+
+app-text/ghostscript-gpl cups
+app-text/poppler qt6 boost nss -jpeg2k -jpeg
+app-text/xmlto text
+
+dev-lang/python -gdbm
+
+dev-libs/boehm-gc cxx
+dev-libs/boost context nls
+dev-libs/glib dbus
+dev-libs/qcoro dbus
+dev-libs/xmlsec nss
+
+dev-python/PyQt6 -dbus -opengl -sql -svg -xml webchannel
+
+dev-qt/qt5compat qml
+dev-qt/qtbase libproxy X cups
+dev-qt/qtgui accessibility egl X dbus jpeg
+dev-qt/qtmultimedia X qml
+dev-qt/qtprintsupport cups
+dev-qt/qtwebengine -alsa -vaapi
+
+dev-util/ccache -static-c++
+
+dev-vcs/git -iconv -pcre -perl
+
+kde-apps/okular -crypt -plucker
+
+kde-frameworks/kconfig qml dbus
+kde-frameworks/kcoreaddons dbus
+kde-frameworks/kdelibs4support X
+kde-frameworks/kglobalaccel X
+kde-frameworks/kitemmodels qml
+kde-frameworks/knotifications X phonon
+kde-frameworks/kwindowsystem X
+kde-frameworks/prison qml
+kde-frameworks/sonnet -hunspell qml
+
+kde-plasma/kdeplasma-addons -alternate-calendar
+kde-plasma/kwin lock
+kde-plasma/plasma-meta elogind firewall gtk legacy-systray pulseaudio -browser-integration -colord -crash-handler -crypt -display-manager -sddm -wallpapers
+kde-plasma/plasma-workspace -policykit -wallpaper-metadata
+#kde-plasma/plasma-nm openconnect
+
+mail-client/thunderbird dbus
+
+media-gfx/blender -color-management -cycles -dds -embree -ffmpeg -fftw -fluid -nanovdb -oidn -openexr -openpgl -opensubdiv -openvdb -pdf -potrace -pugixml -sndfile -tiff jemalloc 
+
+media-libs/freetype brotli
+media-libs/harfbuzz -cairo
+media-libs/libepoxy X
+media-libs/libglvnd X
+media-libs/libpng apng
+media-libs/libvpx postproc
+media-libs/mesa proprietary-codecs X gles1 gles2
+media-libs/phonon qt6 qt5 -vlc
+
+media-video/pipewire sound-server
+
+net-dns/dnsmasq dbus dnssec -dumpfile
+
+net-libs/nodejs -snapshot
+net-libs/webkit-gtk -jpeg2k
+
+net-misc/networkmanager -concheck elogind -ppp -wext connection-sharing nftables dhcpcd
+
+net-vpn/openconnect gnutls
+net-vpn/networkmanager-openconnect gtk
+
+net-wireless/wpa_supplicant dbus
+
+sys-apps/accountsservice elogind
+sys-apps/dbus elogind X
+sys-apps/debianutils -installkernel
+sys-apps/flatpak X
+sys-apps/memtest86+ -bios64 uefi64
+sys-apps/openrc sysv-utils -ncurses -sysvinit -netifrc
+
+sys-auth/pambase -passwdqc minimal
+sys-auth/polkit-qt qt6 qt5
+
+sys-boot/grub:2 device-mapper
+
+sys-devel/gcc -jit -cet
+
+sys-fs/btrfs-progs -convert
+sys-fs/lvm2 lvm
+sys-fs/udisks elogind
+
+sys-kernel/gentoo-sources experimental
+sys-kernel/linux-firmware savedconfig
+
+sys-libs/libxcrypt static-libs
+sys-libs/zlib minizip
+
+virtual/libcrypt static-libs
+
+www-client/firefox eme-free hwaccel openh264 system-png system-python-libs pulseaudio dbus
+
+x11-libs/libdrm VIDEO_CARDS: radeon
+x11-libs/libxkbcommon X
+x11-libs/cairo X
+x11-libs/gtk+ X

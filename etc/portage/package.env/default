@@ -1,0 +1,19 @@
+dev-lang/rust j2.conf ccache.conf
+dev-lang/spidermonkey j2.conf ccache.conf
+
+dev-libs/boost j2.conf ccache.conf
+
+dev-qt/qtwebengine j2.conf ccache.conf
+
+media-gfx/blender j2.conf ccache.conf
+
+mail-client/thunderbird j2.conf ccache.conf
+
+net-libs/nodejs j2.conf ccache.conf
+net-libs/webkit-gtk j2.conf ccache.conf
+
+sys-devel/clang j2.conf ccache.conf
+sys-devel/gcc j2.conf ccache.conf
+sys-devel/llvm j2.conf ccache.conf
+
+www-client/firefox j2.conf ccache.conf
