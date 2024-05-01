@@ -161,6 +161,8 @@ user_pref("browser.sessionhistory.max_entries", 0);
 user_pref("browser.sessionhistory.max_total_viewers", 0);
 user_pref("browser.tabs.remote.separatePrivilegedContentProcess", false);
 user_pref("browser.tabs.remote.separateFileUriProcess", false);
+user_pref("browser.tabs.remote.separatePrivilegedMozillaWebContentProcess", false);
+user_pref("browser.tabs.remote.dataUriInDefaultWebProcess", true);
 
 user_pref("dom.storage.enabled", true);
 user_pref("dom.disable_beforeunload", true);
@@ -187,6 +189,7 @@ user_pref("media.rdd-process.enabled", false);
 user_pref("network.cookie.cookieBehavior", 5);
 user_pref("network.http.sendOriginHeader", 0);
 user_pref("network.file.disable_unc_paths", false);
+user_pref("network.process.enabled", false);
 //user_pref("network.cookie.lifetimePolicy", 2); //Causes override to true on privacy.sanitize.sanitizeOnShutdown
 
 user_pref("places.history.enabled", false);

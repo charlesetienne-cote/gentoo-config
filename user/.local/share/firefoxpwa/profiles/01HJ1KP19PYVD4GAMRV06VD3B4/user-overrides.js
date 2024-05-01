@@ -161,11 +161,11 @@ user_pref("browser.sessionhistory.max_entries", 0);
 user_pref("browser.sessionhistory.max_total_viewers", 0);
 user_pref("browser.tabs.remote.separatePrivilegedContentProcess", false);
 user_pref("browser.tabs.remote.separateFileUriProcess", false);
+user_pref("browser.tabs.remote.separatePrivilegedMozillaWebContentProcess", false);
+user_pref("browser.tabs.remote.dataUriInDefaultWebProcess", true);
 
 user_pref("dom.storage.enabled", true);
 user_pref("dom.ipc.processCount", 1);
-
-user_pref("extensions.webextensions.remote", false);
 
 user_pref("firefoxpwa.displayUrlBar", 1);
 user_pref("firefoxpwa.enableTabsMode", true);
@@ -174,6 +174,8 @@ user_pref("firefoxpwa.openOutOfScopeInDefaultBrowser", true);
 
 user_pref("fission.autostart", false);
 
+user_pref("full-screen-api.warning.timeout", 0);
+
 user_pref("identity.fxaccounts.toolbar.defaultVisible", true);
 
 user_pref("layers.gpu-process.enabled", false);
@@ -181,11 +183,11 @@ user_pref("layers.gpu-process.enabled", false);
 user_pref("media.autoplay.default", 0);
 user_pref("media.autoplay.enabled", true);
 user_pref("media.block-autoplay-until-in-foreground", false);
-user_pref("media.rdd-process.enabled", false);
 
 user_pref("network.cookie.cookieBehavior", 5);
 user_pref("network.http.sendOriginHeader", 0);
 user_pref("network.file.disable_unc_paths", false);
+user_pref("network.process.enabled", false);
 //user_pref("network.cookie.lifetimePolicy", 2); //Causes override to true on privacy.sanitize.sanitizeOnShutdown
 
 user_pref("places.history.enabled", false);
