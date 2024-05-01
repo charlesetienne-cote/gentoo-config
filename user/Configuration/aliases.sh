@@ -60,6 +60,7 @@ update-firefox () {
 		doas -u $WHOAMI cp --recursive --force --reflink=always /usr/lib64/firefox/* /home/$WHOAMI/.local/share/firefoxpwa/runtime;\
 		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.mozilla/firefox/tiuh6kpf.default;\
 		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.local/share/firefoxpwa/profiles/01HJ1KP19PYVD4GAMRV06VD3B4;\
+		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.local/share/firefoxpwa/profiles/01HWRZKY7VECNT8ZQHKJYKESN5;\
 		cd /home/$WHOAMI/Git/FreeTubeAndroid;\
 		doas -u $WHOAMI yarn --pure-lockfile clean;\
 		doas -u $WHOAMI yarn --pure-lockfile upgrade;\
