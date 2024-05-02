@@ -55,17 +55,27 @@ update-firefox () {
 		echo "You can't do this as root"
 	else
 		doas bash -c "\
-		cp --force --reflink=always /home/$WHOAMI/Configuration/policies.json /usr/lib64/firefox/distribution/policies.json;\
+		cp --force --reflink=auto /home/$WHOAMI/Configuration/policies.json /usr/lib64/firefox/distribution/policies.json;\
 		doas -u $WHOAMI rm --recursive --force /home/$WHOAMI/.local/share/firefoxpwa/runtime/*;\
 		doas -u $WHOAMI cp --recursive --force --reflink=always /usr/lib64/firefox/* /home/$WHOAMI/.local/share/firefoxpwa/runtime;\
 		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.mozilla/firefox/tiuh6kpf.default;\
 		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.local/share/firefoxpwa/profiles/01HJ1KP19PYVD4GAMRV06VD3B4;\
 		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.local/share/firefoxpwa/profiles/01HWRZKY7VECNT8ZQHKJYKESN5;\
-		cd /home/$WHOAMI/Git/FreeTubeAndroid;\
-		doas -u $WHOAMI yarn --pure-lockfile clean;\
-		doas -u $WHOAMI yarn --pure-lockfile upgrade;\
-		doas -u $WHOAMI yarn --pure-lockfile pack:web;\
+		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.local/share/firefoxpwa/profiles/01HG8W8V0HE1T552RSDE6T5S4F;\
+		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.local/share/firefoxpwa/profiles/01HG8VMTPMBMRZQXJKKDEQH6KS;\
 		doas -u $WHOAMI echo \"Check changelog (https://github.com/arkenfox/user.js/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Achangelog)\""
+	fi
+}
+
+update-freetube () {
+	local WHOAMI=$(whoami)
+	if [ $WHOAMI = 'root' ]; then
+		echo "You can't do this as root"
+	else
+		cd /home/$WHOAMI/Git/FreeTubeAndroid
+		yarn --pure-lockfile clean
+		yarn --pure-lockfile upgrade
+		yarn --pure-lockfile pack:web
 	fi
 }
 
@@ -95,7 +105,8 @@ update-kernel () {
 		mv /boot/vmlinuz /boot/vmlinuz-\$kernelVer;\
 		dracut --force --kver \$kernelVer;\
 		grub-mkconfig -o /boot/grub/grub.cfg;\
-		snapper --config root create --type post --pre-number \$preNum --description \$kernelVer --cleanup-algorithm number"
+		snapper --config root create --type post --pre-number \$preNum --description \$kernelVer --cleanup-algorithm number;\
+		doas -u $WHOAMI cp --force --reflink=auto /usr/src/linux/.config $SCRIPT_DIR/linux/.config"
 	fi
 }
 
