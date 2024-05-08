@@ -106,7 +106,7 @@ update-kernel () {
 		dracut --force --kver \$kernelVer;\
 		grub-mkconfig -o /boot/grub/grub.cfg;\
 		snapper --config root create --type post --pre-number \$preNum --description \$kernelVer --cleanup-algorithm number;\
-		doas -u $WHOAMI cp --force --reflink=auto /usr/src/linux/.config $SCRIPT_DIR/linux/.config"
+		doas -u $WHOAMI cp --force --reflink=auto /usr/src/linux/.config $GENTOO_CONFIG_DIR/linux/.config"
 	fi
 }
 
