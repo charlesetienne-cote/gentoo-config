@@ -13,6 +13,7 @@ app-text/poppler qt6 boost nss -jpeg2k -jpeg
 app-text/xmlto text
 
 dev-lang/python -gdbm
+dev-lang/rust system-bootstrap system-llvm
 
 dev-libs/boehm-gc cxx
 dev-libs/boost context nls

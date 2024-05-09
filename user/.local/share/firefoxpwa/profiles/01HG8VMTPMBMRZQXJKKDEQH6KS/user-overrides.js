@@ -55,7 +55,6 @@ user_pref("devtools.accessibility.enabled", false);
 
 user_pref("dom.indexedDB.enabled", false);
 user_pref("dom.storage.enabled", false);
-user_pref("dom.webaudio.enabled", false);
 user_pref("dom.battery.enabled", false);
 user_pref("dom.event.clipboardevents.enabled", false);
 user_pref("dom.event.contextmenu.enabled", false);
@@ -101,7 +100,6 @@ user_pref("media.navigator.enabled", false);
 user_pref("media.videocontrols.picture-in-picture.enabled", false);
 user_pref("media.video_stats.enabled", false);
 user_pref("media.gmp-provider.enabled", false);
-user_pref("media.peerconnection.enabled", false);
 
 user_pref("narrate.enabled", false);
 
@@ -188,3 +186,5 @@ user_pref("places.history.enabled", false);
 user_pref("privacy.sanitize.sanitizeOnShutdown", false);
 user_pref("privacy.resistFingerprinting", false);
 user_pref("privacy.resistFingerprinting.letterboxing", false);
+
+user_pref("webgl.disabled", false);
