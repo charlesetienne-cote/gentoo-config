@@ -44,7 +44,8 @@ update () {
 		doas bash -c "\
 		eix-sync;\
 		emerge --ask --verbose --update --keep-going --backtrack=100 --deep --newuse --with-bdeps=y @world;\
-		doas -u $WHOAMI cargo install-update -a
+		doas -u $WHOAMI cp --force --reflink=auto /var/lib/portage/world $GENTOO_CONFIG_DIR/var/lib/portage/world
+		doas -u $WHOAMI cargo install-update -a;\
 		npm update -g"
 	fi
 }
