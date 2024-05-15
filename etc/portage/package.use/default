@@ -80,10 +80,9 @@ net-libs/nodejs -snapshot
 net-libs/webkit-gtk -jpeg2k
 net-libs/libquotient qt6
 
-net-misc/networkmanager -concheck elogind -ppp -wext connection-sharing nftables dhcpcd
+net-misc/networkmanager -concheck elogind -ppp -wext connection-sharing nftables dhcpcd -modemmanager
 
 net-vpn/openconnect gnutls
-net-vpn/networkmanager-openconnect gtk
 
 net-wireless/wpa_supplicant dbus
 
@@ -93,7 +92,9 @@ sys-apps/accountsservice elogind
 sys-apps/dbus elogind X
 sys-apps/debianutils -installkernel
 sys-apps/flatpak X
+sys-apps/less -pcre
 sys-apps/memtest86+ -bios64 uefi64
+sys-apps/net-tools -arp
 sys-apps/openrc sysv-utils -ncurses -sysvinit -netifrc
 
 sys-auth/pambase -passwdqc minimal

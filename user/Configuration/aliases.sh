@@ -1,5 +1,5 @@
 alias neofetch="neowofetch"
-alias update-config="$GENTOO_CONFIG_DIR/apply-config.sh"
+alias update-config="source $GENTOO_CONFIG_DIR/apply-config.sh"
 
 #Si conflit:
 #emerge --ask --verbose --update --deep --newuse --with-bdeps=y --ignore-world *PaquetEnConflit*

@@ -11,5 +11,5 @@ else
 	doas -u $WHOAMI bash -c \"echo \\\"export PATH=\\\\\\\"\\\\\\\$PATH:/home/$WHOAMI/.local/bin:/home/$WHOAMI/.cargo/bin\\\\\\\"\\\" >> /home/$WHOAMI/.bashrc\";\
 	doas -u $WHOAMI bash -c \"echo \\\"export GENTOO_CONFIG_DIR=$SCRIPT_DIR\\\" >> /home/$WHOAMI/.bashrc\";\
 	doas -u $WHOAMI bash -c \"echo \\\"source /home/$WHOAMI/Configuration/aliases.sh\\\" >> /home/$WHOAMI/.bashrc\";"
-	exec bash
+	source /home/$WHOAMI/.bashrc
 fi
