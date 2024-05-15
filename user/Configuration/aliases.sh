@@ -1,5 +1,4 @@
 alias neofetch="neowofetch"
-alias sherby-vpn="openconnect-sso --server rpv.usherbrooke.ca"
 alias update-config="$GENTOO_CONFIG_DIR/apply-config.sh"
 
 #Si conflit:
@@ -45,7 +44,6 @@ update () {
 		doas bash -c "\
 		eix-sync;\
 		emerge --ask --verbose --update --keep-going --backtrack=100 --deep --newuse --with-bdeps=y @world;\
-		doas -u $WHOAMI pipx upgrade-all;\
 		doas -u $WHOAMI cargo install-update -a
 		npm update -g"
 	fi
