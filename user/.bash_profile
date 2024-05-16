@@ -33,6 +33,11 @@ if [[ -f ~/.bashrc ]] ; then
 			xdg-user-dirs-update > /dev/null &
 			/usr/lib64/libexec/org_kde_powerdevil > /dev/null &
 			plasmashell > /dev/null &
+			easyeffects --gapplication-service > /dev/null &
+			/usr/bin/firefoxpwa site launch 01HG8VMTYV6ETT2DA7AE21H2VY > /dev/null &
+			/home/charles/Configuration/Signal.sh > /dev/null &
+			synology-drive autostart > /dev/null &
+			thunderbird > /dev/null &
 			wait $KWIN_PID
 			killall --user $WHOAMI
 			logout
