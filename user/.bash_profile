@@ -35,7 +35,7 @@ if [[ -f ~/.bashrc ]] ; then
 			plasmashell > /dev/null &
 			easyeffects --gapplication-service > /dev/null &
 			/usr/bin/firefoxpwa site launch 01HG8VMTYV6ETT2DA7AE21H2VY > /dev/null &
-			/home/charles/Configuration/Signal.sh > /dev/null &
+			/home/$WHOAMI/Configuration/Signal.sh > /dev/null &
 			synology-drive autostart > /dev/null &
 			thunderbird > /dev/null &
 			wait $KWIN_PID
