@@ -114,6 +114,8 @@ sys-kernel/linux-firmware savedconfig
 sys-libs/libxcrypt static-libs
 sys-libs/zlib minizip
 
+sys-process/procps -ncurses
+
 virtual/libcrypt static-libs
 
 www-client/firefox eme-free hwaccel openh264 system-png system-python-libs pulseaudio dbus

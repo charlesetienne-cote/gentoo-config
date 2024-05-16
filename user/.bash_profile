@@ -25,13 +25,9 @@ if [[ -f ~/.bashrc ]] ; then
 			export WAYLAND_DISPLAY="wayland-0"
 			gentoo-pipewire-launcher restart > /dev/null &
 			kded6 > /dev/null &
-			/usr/libexec/at-spi-bus-launcher --launch-immediately > /dev/null &
-			gmenudbusmenuproxy > /dev/null &
-			/usr/lib64/libexec/kglobalacceld > /dev/null &
 			/lib64/libexec/pam_kwallet_init > /dev/null &
 			/usr/lib64/libexec/polkit-kde-authentication-agent-1 > /dev/null &
 			xdg-user-dirs-update > /dev/null &
-			/usr/lib64/libexec/org_kde_powerdevil > /dev/null &
 			plasmashell > /dev/null &
 			easyeffects --gapplication-service > /dev/null &
 			/usr/bin/firefoxpwa site launch 01HG8VMTYV6ETT2DA7AE21H2VY > /dev/null &
