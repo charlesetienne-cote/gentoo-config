@@ -1,4 +1,3 @@
-sys-apps/kmod-32-r1
 net-misc/rsync-3.3.0
 sys-apps/iproute2-6.9.0
 sys-fs/e2fsprogs-1.47.0-r3

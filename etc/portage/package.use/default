@@ -96,6 +96,7 @@ sys-apps/less -pcre
 sys-apps/memtest86+ -bios64 uefi64
 sys-apps/net-tools -arp
 sys-apps/openrc sysv-utils -ncurses -sysvinit -netifrc
+sys-apps/kmod -lzma -zlib -zstd -tools
 
 sys-auth/pambase -passwdqc minimal
 sys-auth/polkit-qt qt6 qt5

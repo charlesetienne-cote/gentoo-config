@@ -12,6 +12,7 @@ cleanup () {
 		echo "You can't do this as root"
 	else
 		doas bash -c "\
+		find /usr/src -mindepth 1 -maxdepth 1 -not -name 'linux' -not -name \$(doas -u $WHOAMI readlink /usr/src/linux) -exec rm -rf {} \; ;\
 		cd /usr/src/linux;\
 		make clean;\
 		emerge --ask --depclean;\
@@ -56,6 +57,7 @@ update-firefox () {
 		echo "You can't do this as root"
 	else
 		doas bash -c "\
+		doas -u $WHOAMI killall firefox;\
 		cp --force --reflink=auto /home/$WHOAMI/Configuration/policies.json /usr/lib64/firefox/distribution/policies.json;\
 		doas -u $WHOAMI rm --recursive --force /home/$WHOAMI/.local/share/firefoxpwa/runtime/*;\
 		doas -u $WHOAMI cp --recursive --force --reflink=always /usr/lib64/firefox/* /home/$WHOAMI/.local/share/firefoxpwa/runtime;\
@@ -92,10 +94,8 @@ update-kernel () {
 		doas -u $WHOAMI echo \"New Kernel\";\
 		read kernelPos;\
 		eselect kernel set \$kernelPos;\
+		cp --force --reflink=auto $GENTOO_CONFIG_DIR/linux/.config /usr/src/linux/.config;\
 		cd /usr/src/linux;\
-		doas -u $WHOAMI echo \"Old kernel\";\
-		read kernelOld;\
-		cp /usr/src/\$kernelOld/.config /usr/src/linux;\
 		make oldconfig;\
 		make -j6;\
 		find /boot -not -name 'memtest.efi64' -delete;\
