@@ -44,6 +44,7 @@ update () {
 	else
 		doas bash -c "\
 		eix-sync;\
+		eselect news read new;\
 		emerge --ask --verbose --update --keep-going --backtrack=100 --deep --newuse --with-bdeps=y @world;\
 		doas -u $WHOAMI cp --force --reflink=auto /var/lib/portage/world $GENTOO_CONFIG_DIR/var/lib/portage/world
 		doas -u $WHOAMI cargo install-update -a;\
@@ -62,6 +63,7 @@ update-firefox () {
 		doas -u $WHOAMI rm --recursive --force /home/$WHOAMI/.local/share/firefoxpwa/runtime/*;\
 		doas -u $WHOAMI cp --recursive --force --reflink=always /usr/lib64/firefox/* /home/$WHOAMI/.local/share/firefoxpwa/runtime;\
 		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.mozilla/firefox/tiuh6kpf.default;\
+		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.mozilla/firefox/3v4f2jgx.Vanilla;\
 		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.local/share/firefoxpwa/profiles/01HJ1KP19PYVD4GAMRV06VD3B4;\
 		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.local/share/firefoxpwa/profiles/01HWRZKY7VECNT8ZQHKJYKESN5;\
 		doas -u $WHOAMI /home/$WHOAMI/Configuration/updater.sh -bsu -p /home/$WHOAMI/.local/share/firefoxpwa/profiles/01HG8W8V0HE1T552RSDE6T5S4F;\
@@ -98,15 +100,28 @@ update-kernel () {
 		cd /usr/src/linux;\
 		make oldconfig;\
 		make -j6;\
-		find /boot -not -name 'memtest.efi64' -delete;\
+		find /boot -mindepth 1 -not -name 'memtest.efi64' -delete;\
 		rm --recursive --force /lib/modules/*;\
 		grub-install --efi-directory=/efi;\
 		kernelVer=\$(doas -u $WHOAMI make --no-print-directory kernelversion);\
 		make install;\
 		mv /boot/vmlinuz /boot/vmlinuz-\$kernelVer;\
 		dracut --force --kver \$kernelVer;\
-		grub-mkconfig -o /boot/grub/grub.cfg;\
 		snapper --config root create --type post --pre-number \$preNum --description \$kernelVer --cleanup-algorithm number;\
+		grub-mkconfig -o /boot/grub/grub.cfg;\
+		doas -u $WHOAMI cp --force --reflink=auto /usr/src/linux/.config $GENTOO_CONFIG_DIR/linux/.config"
+	fi
+}
+
+kernel-config () {
+	local WHOAMI=$(whoami)
+	if [ $WHOAMI = 'root' ]; then
+		echo "You can't do this as root"
+	else
+		doas bash -c "\
+		cp --force --reflink=auto $GENTOO_CONFIG_DIR/linux/.config /usr/src/linux/.config;\
+		cd /usr/src/linux;\
+		make menuconfig;\
 		doas -u $WHOAMI cp --force --reflink=auto /usr/src/linux/.config $GENTOO_CONFIG_DIR/linux/.config"
 	fi
 }
