@@ -179,6 +179,8 @@ user_pref("network.cookie.cookieBehavior", 5);
 user_pref("network.http.sendOriginHeader", 0);
 user_pref("network.file.disable_unc_paths", false);
 user_pref("network.process.enabled", false);
+user_pref("network.protocol-handler.external-default", false);
+user_pref("network.protocol-handler.external.mailto", false);
 //user_pref("network.cookie.lifetimePolicy", 2); //Causes override to true on privacy.sanitize.sanitizeOnShutdown
 
 user_pref("places.history.enabled", false);
