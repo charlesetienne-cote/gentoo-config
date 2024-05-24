@@ -26,6 +26,7 @@ dev-libs/qtkeychain qt6
 dev-libs/xmlsec nss
 
 dev-python/PyQt6 -dbus -opengl -sql -svg -xml webchannel
+dev-python/numpy -lapack
 
 dev-qt/qt5compat qml
 dev-qt/qtbase libproxy X cups
@@ -60,6 +61,7 @@ kde-plasma/plasma-nm openconnect
 mail-client/thunderbird dbus
 
 media-gfx/blender -color-management -cycles -dds -embree -ffmpeg -fftw -fluid -nanovdb -oidn -openexr -openpgl -opensubdiv -openvdb -pdf -potrace -pugixml -sndfile -tiff jemalloc 
+media-gfx/graphviz perl
 
 media-libs/freetype brotli
 media-libs/harfbuzz -cairo
@@ -69,6 +71,7 @@ media-libs/libpng apng
 media-libs/libvpx postproc
 media-libs/mesa proprietary-codecs X gles1 gles2
 media-libs/phonon qt6 qt5 -vlc
+media-libs/gd truetype fontconfig
 
 media-sound/easyeffects -doc
 
