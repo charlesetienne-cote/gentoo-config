@@ -1,6 +1,18 @@
+diff --git a/Makefile b/Makefile
+index f979d90..30d368f 100644
+--- a/Makefile
++++ b/Makefile
+@@ -50,6 +50,7 @@ include $(CORE_DEPTH)/coreconf/rules.mk
+ #######################################################################
+ 
+ nss_build_all:
++	bash -c "source user.sh"
+ 	$(MAKE) all
+ 
+ nss_clean_all:
 diff --git a/cert-append.txt b/cert-append.txt
 new file mode 100644
-index 0000000000..aa45f4ef3b
+index 0000000..aa45f4e
 --- /dev/null
 +++ b/cert-append.txt
 @@ -0,0 +1,123 @@
@@ -127,32 +139,17 @@ index 0000000000..aa45f4ef3b
 +CKA_TRUST_EMAIL_PROTECTION CK_TRUST CKT_NSS_TRUSTED_DELEGATOR
 +CKA_TRUST_CODE_SIGNING CK_TRUST CKT_NSS_TRUSTED_DELEGATOR
 +CKA_TRUST_STEP_UP_APPROVED CK_BBOOL CK_FALSE
-diff --git a/mach b/mach
-index 5ea05fb643..ee02a75eac 100755
---- a/mach
-+++ b/mach
-@@ -6,6 +6,10 @@
- import os
- import platform
- import sys
-+
-+command="source "+os.path.dirname(os.path.realpath(__file__))+"/user.sh"
-+os.system(command)
-+
- import subprocess
- import traceback
- from textwrap import dedent, fill
 diff --git a/user.sh b/user.sh
-new file mode 100644
-index 0000000000..d1b50f60b0
+new file mode 100755
+index 0000000..1852a35
 --- /dev/null
 +++ b/user.sh
 @@ -0,0 +1,7 @@
 +#!/usr/bin/env bash
 +
-+if grep -q 'mitmproxy' security/nss/lib/ckfw/builtins/certdata.txt; then
++if grep -q 'mitmproxy' lib/ckfw/builtins/certdata.txt; then
 +    echo "mitmproxy cert already found"
 +else
-+    cat cert-append.txt >> security/nss/lib/ckfw/builtins/certdata.txt
++    cat cert-append.txt >> lib/ckfw/builtins/certdata.txt
 +fi
 \ No newline at end of file
