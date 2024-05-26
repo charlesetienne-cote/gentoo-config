@@ -59,6 +59,19 @@ update-firefox () {
 	else
 		doas bash -c "\
 		doas -u $WHOAMI killall firefox;\
+		doas -u $WHOAMI mkdir /tmp/omni
+		cd /tmp/omni
+		doas -u $WHOAMI unzip -oq /usr/lib64/firefox/omni.ja
+		doas -u $WHOAMI rm -rf dictionaries
+		doas -u $WHOAMI rm -rf hyphenation
+		doas -u $WHOAMI rm -rf localization
+		doas -u $WHOAMI sed -i '/const SECURITY_STATE_SIGNER = /c\const SECURITY_STATE_SIGNER = \"\";' modules/psm/RemoteSecuritySettings.sys.mjs
+		doas -u $WHOAMI sed -i '/const DEFAULT_SIGNER = /c\const DEFAULT_SIGNER = \"\";' modules/services-settings/remote-settings.sys.mjs
+		doas -u $WHOAMI sed -i '/MOZ_NORMANDY/!b;n;c\ \ false,' modules/AppConstants.sys.mjs
+		doas -u $WHOAMI sed -i '/REMOTE_SETTINGS_SERVER_URL/!b;n;c\ \ \ \ \"\",' modules/AppConstants.sys.mjs
+		doas -u $WHOAMI sed -i '/firefox.settings.services.mozilla.com/c\ \ \ \ \ \ \"\",' modules/SearchUtils.sys.mjs
+		doas -u $WHOAMI zip -0DXqr omni.ja *
+		cp omni.ja /usr/lib64/firefox/omni.ja
 		cp --force --reflink=auto /home/$WHOAMI/Configuration/policies.json /usr/lib64/firefox/distribution/policies.json;\
 		doas -u $WHOAMI rm --recursive --force /home/$WHOAMI/.local/share/firefoxpwa/runtime/*;\
 		doas -u $WHOAMI cp --recursive --force --reflink=always /usr/lib64/firefox/* /home/$WHOAMI/.local/share/firefoxpwa/runtime;\

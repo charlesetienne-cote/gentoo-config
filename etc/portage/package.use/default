@@ -1,6 +1,7 @@
 app-admin/keepassxc -network
 
 app-arch/libarchive -e2fsprogs
+app-arch/brotli python
 
 app-crypt/qca qt6 qt5
 app-crypt/gcr gtk

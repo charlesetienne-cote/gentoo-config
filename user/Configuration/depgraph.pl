@@ -1,7 +1,5 @@
 #!/usr/bin/perl
 use strict;
-# you need graphviz with USE=perl for the gv package:
-use gv;
 
 print "Collecting world package list\n";
 my $packets = `emerge -qpe world|cut -f2 -d]|sed 's/^ //g'`;
@@ -30,8 +28,5 @@ foreach my $packet (@packets) {
 print "Writing graph to dot-file\n";
 gv::write($G, "world-dependencies.dot");
 `sed -i -e 's/ ";/";/g' world-dependencies.dot`;
-
-print "Rendering dot-file as svg image\n";
-`dot -o world-dependencies.svg -Tsvg -Grankdir=LR world-dependencies.dot`; 
 
 # See emerge -pvc category/package for custom equery depends

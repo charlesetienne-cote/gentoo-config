@@ -145,3 +145,34 @@ user_pref("toolkit.telemetry.unifiedIsOptIn", false);
 
 user_pref("webgl.renderer-string-override", " ");
 user_pref("webgl.vendor-string-override", " ");
+
+user_pref("extensions.webextensions.uuids", "{\"skipredirect@sblask\":\"b5bc2e61-1bd5-41c2-b80d-b7e5f55b79f8\",\"redirector@einaregilsson.com\":\"7a8b4001-2519-4aee-8a7d-ee966db72048\",\"uBlock0@raymondhill.net\":\"73c4ff3d-d022-4add-b374-7c9187abd4e2\",\"firefoxpwa@filips.si\":\"6db130d6-ad66-44fc-9c0c-a48f150ee7f4\",\"7esoorv3@alefvanoon.anonaddy.me\":\"ed923f84-357f-427b-a47d-06a8094de06f\",\"formautofill@mozilla.org\":\"05b9003b-1c00-4759-b3c6-c8fec2db741e\",\"pictureinpicture@mozilla.org\":\"17e34fa5-58eb-4483-a736-ad607ce37014\",\"screenshots@mozilla.org\":\"a6878efc-9f89-45e5-860a-4837e2109421\",\"webcompat-reporter@mozilla.org\":\"93b51cdd-fe32-4edb-b7ab-3e6a0eccd7ef\",\"webcompat@mozilla.org\":\"00256a41-5241-4f26-9d3d-2a8da5e33fa6\",\"addons-search-detection@mozilla.com\":\"d5a83dd0-efe8-4255-85e7-6d0bb7e51989\",\"google@search.mozilla.org\":\"5e703d97-f3cf-4c8e-9d12-966821e6a83c\",\"wikipedia@search.mozilla.org\":\"9eea0149-d2cf-4e60-9502-0a5c94e0ef4b\",\"bing@search.mozilla.org\":\"d03b3f3d-7ba9-499e-8c73-a70d7117c363\",\"ddg@search.mozilla.org\":\"12b75b94-c303-49cd-83fe-ddfd4abff6e4\",\"amazon@search.mozilla.org\":\"bb9884dc-2d9e-4876-8c40-11dfe09f6124\",\"ebay@search.mozilla.org\":\"2b421877-d6f6-4615-88b2-205db3af7e9c\",\"qwant@search.mozilla.org\":\"0dbe0a7e-eb9e-430b-b333-116a5888fbd1\",\"default-theme@mozilla.org\":\"c8fea114-3d75-46fd-a63a-eb3d77fc2db6\"}");
+
+user_pref("privacy.userContext.enabled", false);
+user_pref("privacy.userContext.ui.enabled", false);
+
+user_pref("privacy.userContext.enabled", false);
+user_pref("privacy.userContext.ui.enabled", false);
+
+user_pref("network.proxy.allow_bypass", false);
+user_pref("network.proxy.failover_direct", false);
+user_pref("network.proxy.socks", "socks5.us-wa2.gw.ivpn.net");
+user_pref("network.proxy.socks_port", 1080);
+user_pref("network.proxy.socks_remote_dns", true);
+user_pref("network.proxy.type", 1);
+
+user_pref("browser.search.update", false);
+user_pref("extensions.update.enabled", false);
+user_pref("privacy.trackingprotection.cryptomining.enabled", false);
+user_pref("privacy.trackingprotection.emailtracking.pbmode.enabled", false);
+user_pref("privacy.trackingprotection.pbmode.enabled", false);
+user_pref("privacy.trackingprotection.fingerprinting.enabled", false);
+user_pref("browser.contentblocking.category", "custom");
+user_pref("signon.management.page.breach-alerts.enabled", false);
+user_pref("signon.management.page.breachAlertUrl", "");
+user_pref("signon.management.page.enabled", false);
+user_pref("signon.generation.enabled", false);
+user_pref("messaging-system.rsexperimentloader.enabled", false);
+user_pref("security.OCSP.enabled", 1);
+user_pref("security.OCSP.require", false);
+user_pref("security.ssl.enable_ocsp_stapling", false);
