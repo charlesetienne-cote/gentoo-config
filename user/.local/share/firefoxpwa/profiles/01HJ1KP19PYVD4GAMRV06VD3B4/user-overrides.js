@@ -1386,3 +1386,7 @@ user_pref("security.tls.enable_kyber",				true);
 user_pref("xpinstall.signatures.required", false);
 user_pref("extensions.blocklist.enabled", false);
 user_pref("browser.newtabpage.activity-stream.discoverystream.spocs.personalized", false);
+
+user_pref("security.OCSP.enabled", 0);
+user_pref("security.OCSP.require", false);
+user_pref("security.cert_pinning.enforcement_level", 0);

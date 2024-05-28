@@ -70,6 +70,7 @@ update-firefox () {
 		doas -u $WHOAMI sed -i '/MOZ_NORMANDY/!b;n;c\ \ false,' modules/AppConstants.sys.mjs
 		doas -u $WHOAMI sed -i '/REMOTE_SETTINGS_SERVER_URL/!b;n;c\ \ \ \ \"\",' modules/AppConstants.sys.mjs
 		doas -u $WHOAMI sed -i '/firefox.settings.services.mozilla.com/c\ \ \ \ \ \ \"\",' modules/SearchUtils.sys.mjs
+		doas -u $WHOAMI sed -i 's/remote-settings.content-signature.mozilla.org//g' modules/services-settings/remote-settings.sys.mjs
 		doas -u $WHOAMI zip -0DXqr omni.ja *
 		cp omni.ja /usr/lib64/firefox/omni.ja
 		cp --force --reflink=auto /home/$WHOAMI/Configuration/policies.json /usr/lib64/firefox/distribution/policies.json;\

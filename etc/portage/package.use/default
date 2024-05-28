@@ -81,6 +81,7 @@ media-video/pipewire sound-server
 net-dns/dnsmasq dbus dnssec -dumpfile
 
 net-libs/nodejs -snapshot
+net-libs/ngtcp2 gnutls
 net-libs/webkit-gtk -jpeg2k
 net-libs/libquotient qt6
 
