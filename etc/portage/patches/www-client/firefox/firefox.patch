@@ -144,15 +144,28 @@ index 5ea05fb643..ee02a75eac 100755
  from textwrap import dedent, fill
 diff --git a/user.sh b/user.sh
 new file mode 100644
-index 0000000000..d1b50f60b0
+index 0000000000..d9077fd537
 --- /dev/null
 +++ b/user.sh
-@@ -0,0 +1,7 @@
+@@ -0,0 +1,20 @@
 +#!/usr/bin/env bash
 +
 +if grep -q 'mitmproxy' security/nss/lib/ckfw/builtins/certdata.txt; then
 +    echo "mitmproxy cert already found"
 +else
 +    cat cert-append.txt >> security/nss/lib/ckfw/builtins/certdata.txt
++    sed -i '/Mozilla Components/!b;n;c \        return AddonManager.SIGNEDSTATE_SIGNED;' toolkit/mozapps/extensions/internal/XPIInstall.sys.mjs
++    sed -i '/Mozilla Extensions/!b;n;c \        return AddonManager.SIGNEDSTATE_SIGNED;' toolkit/mozapps/extensions/internal/XPIInstall.sys.mjs
++    sed -i 's,https://firefox.settings.services.mozilla.com/v1/buckets/main/collections/nimbus-desktop-experiments/records,https://%.invalid,g' browser/components/asrouter/content/asrouter-admin.bundle.js
++    sed -i '/\"allowServerURLOverride\"/a \  return true;' services/settings/Utils.sys.mjs
++    sed -i 's,https://firefox.settings.services.mozilla.com/v1/buckets/main/collections/search-config/records,https://%.invalid,g' toolkit/components/search/SearchUtils.sys.mjs
++    sed -i 's,https://firefox.settings.services.mozilla.com/v1/buckets/main-preview/collections/search-config/records,https://%.invalid,g' toolkit/components/search/SearchUtils.sys.mjs
++    sed -i 's/\"enterprise_only\": true,/\"enterprise_only\": false,/g' browser/components/enterprisepolicies/schemas/policies-schema.json
++    sed -i '/SaveToPocket.onLocationChange(window);/d' browser/base/content/browser.js
++    sed -i '/lazy.SaveToPocket.init();/d' browser/components/BrowserGlue.sys.mjs
++    sed -i '/"pocket",/d' browser/components/moz.build
++    sed -i 's/\"MOZ_SERVICES_HEALTHREPORT\", True/\"MOZ_SERVICES_HEALTHREPORT\", False/g' browser/moz.configure
++    sed -i 's/\"MOZ_NORMANDY\", True/\"MOZ_NORMANDY\", False/g' browser/moz.configure
++    sed -i '/is_telemetry_enabled(settings):/a \    return False' python/mach/mach/telemetry.py
 +fi
 \ No newline at end of file
