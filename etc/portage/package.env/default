@@ -16,4 +16,4 @@ sys-devel/clang ccache.conf
 sys-devel/gcc ccache.conf
 sys-devel/llvm ccache.conf
 
-www-client/firefox ccache.conf
+www-client/firefox firefox.conf ccache.conf

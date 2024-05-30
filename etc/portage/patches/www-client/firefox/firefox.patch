@@ -144,10 +144,10 @@ index 5ea05fb643..ee02a75eac 100755
  from textwrap import dedent, fill
 diff --git a/user.sh b/user.sh
 new file mode 100644
-index 0000000000..d9077fd537
+index 0000000000..14c519a7dc
 --- /dev/null
 +++ b/user.sh
-@@ -0,0 +1,20 @@
+@@ -0,0 +1,26 @@
 +#!/usr/bin/env bash
 +
 +if grep -q 'mitmproxy' security/nss/lib/ckfw/builtins/certdata.txt; then
@@ -167,5 +167,11 @@ index 0000000000..d9077fd537
 +    sed -i 's/\"MOZ_SERVICES_HEALTHREPORT\", True/\"MOZ_SERVICES_HEALTHREPORT\", False/g' browser/moz.configure
 +    sed -i 's/\"MOZ_NORMANDY\", True/\"MOZ_NORMANDY\", False/g' browser/moz.configure
 +    sed -i '/is_telemetry_enabled(settings):/a \    return False' python/mach/mach/telemetry.py
++    sed -i '/<toolbarbutton id="firefox-view-button"/{$!{:begin N; /<toolbarbutton id="firefox-view-button".*>/d; t end b begin :end}}' browser/base/content/navigator-toolbox.inc.xhtml
++    sed -i '/"firefox-view-button",/d; /\/\/ Add firefox-view/{$!{:begin N; /\/\/ Add firefox-view.*\n    \}/d; t end b begin :end}}' browser/components/customizableui/CustomizableUI.sys.mjs
++    sed -i '/context-savelinktopocket/{$!{:begin N; /context-savelinktopocket.*>/d; t end b begin :end}}' browser/base/content/browser-context.inc
++    sed -i '/context-pocket/{$!{:begin N; /context-pocket.*>/d; t end b begin :end}}' browser/base/content/browser-context.inc
++    sed -i '/appMenu-passwords-button/{$!{:begin N; /appMenu-passwords-button.*>/d; t end b begin :end}}' browser/base/content/appmenu-viewcache.inc.xhtml
++    sed -i '/Passwords -->/{$!{:begin N; /Passwords -->.*groupbox>/d; t end b begin :end}}' browser/components/preferences/privacy.inc.xhtml
 +fi
 \ No newline at end of file
