@@ -1,11 +1,3 @@
-diff --git a/all-append.js b/all-append.js
-new file mode 100644
-index 0000000000..c256dbf5df
---- /dev/null
-+++ b/all-append.js
-@@ -0,0 +1 @@
-+pref("network.dnsCacheEntries", 0);
-\ No newline at end of file
 diff --git a/betterfox.js b/betterfox.js
 new file mode 100644
 index 0000000000..e7ffd1cccf
@@ -226,20 +218,12 @@ index 0000000000..aa45f4ef3b
 +CKA_TRUST_EMAIL_PROTECTION CK_TRUST CKT_NSS_TRUSTED_DELEGATOR
 +CKA_TRUST_CODE_SIGNING CK_TRUST CKT_NSS_TRUSTED_DELEGATOR
 +CKA_TRUST_STEP_UP_APPROVED CK_BBOOL CK_FALSE
-diff --git a/firefox-append.js b/firefox-append.js
-new file mode 100644
-index 0000000000..de4d8f9675
---- /dev/null
-+++ b/firefox-append.js
-@@ -0,0 +1 @@
-+pref("identity.fxaccounts.enabled", false);
-\ No newline at end of file
 diff --git a/librewolf.js b/librewolf.js
 new file mode 100644
-index 0000000000..793bdb5168
+index 0000000000..b2e174f085
 --- /dev/null
 +++ b/librewolf.js
-@@ -0,0 +1,538 @@
+@@ -0,0 +1,549 @@
 +
 +/** LIBREWOLF SETTINGS
 + * 
@@ -646,7 +630,7 @@ index 0000000000..793bdb5168
 +
 +/** [SECTION] OTHERS */
 +pref("webchannel.allowObject.urlWhitelist", ""); // remove web channel whitelist
-+pref("services.settings.server", "https://%.invalid"); // set the remote settings URL (REMOTE_SETTINGS_SERVER_URL in the code)
++pref("services.settings.server", "https://%.invalid") // set the remote settings URL (REMOTE_SETTINGS_SERVER_URL in the code)
 +
 +
 +
@@ -778,6 +762,17 @@ index 0000000000..793bdb5168
 +pref("network.protocol-handler.external.ms-windows-store", false); // prevent links from launching windows store
 +pref("toolkit.winRegisterApplicationRestart", false); // disable automatic start and session restore after reboot
 +pref("security.family_safety.mode", 2); // Remove pre-Win10-specific codepath
++
++
++
++/** [CATEGORY] OVERRIDES
++ * allow settings to be overriden with a file placed in the right location
++ * https://librewolf.net/docs/settings/#where-do-i-find-my-librewolfoverridescfg
++ */
++let profile_directory;
++if (profile_directory = getenv('USERPROFILE') || getenv('HOME')) {
++  pref('autoadmin.global_config_url', `file://${profile_directory}/.librewolf/librewolf.overrides.cfg`);
++}
 diff --git a/mach b/mach
 index 5ea05fb643..ee02a75eac 100755
 --- a/mach
@@ -2066,23 +2061,30 @@ index 0000000000..912d05bfe2
 +// https://twitter.com/bwesterb/status/1748017372764475519
 +// https://pq.cloudflareresearch.com/
 +pref("security.tls.enable_kyber",				true);
+diff --git a/user-append.js b/user-append.js
+new file mode 100644
+index 0000000000..c256dbf5df
+--- /dev/null
++++ b/user-append.js
+@@ -0,0 +1 @@
++pref("network.dnsCacheEntries", 0);
+\ No newline at end of file
 diff --git a/user.sh b/user.sh
 new file mode 100644
-index 0000000000..6619ed9a04
+index 0000000000..4ea0e617a9
 --- /dev/null
 +++ b/user.sh
-@@ -0,0 +1,31 @@
+@@ -0,0 +1,30 @@
 +#!/usr/bin/env bash
 +
 +if grep -q 'mitmproxy' security/nss/lib/ckfw/builtins/certdata.txt; then
 +    echo "mitmproxy cert already found"
 +else
 +    cat cert-append.txt >> security/nss/lib/ckfw/builtins/certdata.txt
-+    cat librewolf.js >> modules/libpref/init/all.js
-+    cat betterfox.js >> modules/libpref/init/all.js
-+    cat pref-pyllyukko.js >> modules/libpref/init/all.js
-+    cat all-append.js >> modules/libpref/init/all.js
-+    cat firefox-append.js >> browser/app/profile/firefox.js
++    sed -n 's/^[[:blank:]]*pref("/pref("/p' librewolf.js user-append.js | sed 's/);.*$/);/g' | sed 's/",[[:blank:]]*/", /g' | tac | sort -t ' ' -k 1,1 -u | sed '/autoadmin.global_config_url/d' > append.js
++    sed -n 's/^[[:blank:]]*pref("//p' browser/app/profile/firefox.js | sed 's/".*$//g' | xargs -I % -P 0 grep "%" append.js | sort -t ' ' -k 1,1 -u > append-firefox.js
++    cat append-firefox.js >> browser/app/profile/firefox.js
++    comm -23 <( sort append.js ) <( sort append-firefox.js ) >> modules/libpref/init/all.js
 +    sed -i '/Mozilla Components/!b;n;c \        return AddonManager.SIGNEDSTATE_SIGNED;' toolkit/mozapps/extensions/internal/XPIInstall.sys.mjs
 +    sed -i '/Mozilla Extensions/!b;n;c \        return AddonManager.SIGNEDSTATE_SIGNED;' toolkit/mozapps/extensions/internal/XPIInstall.sys.mjs
 +    sed -i 's,https://firefox.settings.services.mozilla.com/v1/buckets/main/collections/nimbus-desktop-experiments/records,https://%.invalid,g' browser/components/asrouter/content/asrouter-admin.bundle.js

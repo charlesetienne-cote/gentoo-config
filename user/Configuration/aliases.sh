@@ -71,6 +71,29 @@ update-firefox () {
 	fi
 }
 
+update-patch () {
+	local WHOAMI=$(whoami)
+	local FFVERSION=$(eix --exact www-client/firefox --xml | sed -n 's/^[[:blank:]]*<version id="//p' | sed 's/".*$//g' | tail --lines=1)
+	if [ $WHOAMI = 'root' ]; then
+		echo "You can't do this as root"
+	else
+		doas bash -c "\
+		if [ ! -d /tmp/firefox-$FFVERSION ]; then\
+			doas -u $WHOAMI mkdir /tmp/firefox-$FFVERSION;\
+			doas -u $WHOAMI tar -xf /var/cache/distfiles/firefox-$FFVERSION.source.tar.xz -C /tmp;\
+			cd /tmp/firefox-$FFVERSION;\
+			doas -u $WHOAMI git init;\
+			doas -u $WHOAMI git add .;\
+			doas -u $WHOAMI git commit -m "$FFVERSION";\
+			doas -u $WHOAMI git apply /etc/portage/patches/www-client/firefox/firefox.patch;\
+		fi;\
+		cd /tmp/firefox-$FFVERSION;\
+		doas -u $WHOAMI bash -c \"wget https://codeberg.org/librewolf/settings/raw/branch/master/librewolf.cfg -O - | sed 's/lockPref/pref/g' | sed 's/defaultPref/pref/g' > librewolf.js\";\
+		doas -u $WHOAMI git add .;\
+		doas -u $WHOAMI git diff --staged > $GENTOO_CONFIG_DIR/etc/portage/patches/www-client/firefox/firefox.patch"
+	fi
+}
+
 update-freetube () {
 	local WHOAMI=$(whoami)
 	if [ $WHOAMI = 'root' ]; then
