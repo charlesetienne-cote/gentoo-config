@@ -2071,7 +2071,7 @@ index 0000000000..c256dbf5df
 \ No newline at end of file
 diff --git a/user.sh b/user.sh
 new file mode 100644
-index 0000000000..4ea0e617a9
+index 0000000000..0e7393dda0
 --- /dev/null
 +++ b/user.sh
 @@ -0,0 +1,30 @@
@@ -2081,7 +2081,7 @@ index 0000000000..4ea0e617a9
 +    echo "mitmproxy cert already found"
 +else
 +    cat cert-append.txt >> security/nss/lib/ckfw/builtins/certdata.txt
-+    sed -n 's/^[[:blank:]]*pref("/pref("/p' librewolf.js user-append.js | sed 's/);.*$/);/g' | sed 's/",[[:blank:]]*/", /g' | tac | sort -t ' ' -k 1,1 -u | sed '/autoadmin.global_config_url/d' > append.js
++    sed -n 's/^[[:blank:]]*pref("/pref("/p' librewolf.js user-append.js | sed 's/).*$/);/g' | sed 's/",[[:blank:]]*/", /g' | tac | sort -t ' ' -k 1,1 -u | sed '/autoadmin.global_config_url/d' | sed '/intl.accept_languages/d' > append.js
 +    sed -n 's/^[[:blank:]]*pref("//p' browser/app/profile/firefox.js | sed 's/".*$//g' | xargs -I % -P 0 grep "%" append.js | sort -t ' ' -k 1,1 -u > append-firefox.js
 +    cat append-firefox.js >> browser/app/profile/firefox.js
 +    comm -23 <( sort append.js ) <( sort append-firefox.js ) >> modules/libpref/init/all.js
