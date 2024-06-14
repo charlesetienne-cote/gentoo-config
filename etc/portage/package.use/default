@@ -9,7 +9,7 @@ app-crypt/gnupg -wks
 
 app-editors/neovim -lto -nvimpager
 
-app-office/libreoffice -base clang pdfimport kde
+app-office/libreoffice -base clang pdfimport kde qt6
 
 app-text/ghostscript-gpl cups
 app-text/poppler qt6 boost nss -jpeg2k -jpeg
