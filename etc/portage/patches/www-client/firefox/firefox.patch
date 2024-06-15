@@ -160,7 +160,7 @@ index 0000000000..692fdd0f4a
 \ No newline at end of file
 diff --git a/generate-append-firefoxjs.sh b/generate-append-firefoxjs.sh
 new file mode 100644
-index 0000000000..598f0e0730
+index 0000000000..f10756e131
 --- /dev/null
 +++ b/generate-append-firefoxjs.sh
 @@ -0,0 +1,9 @@
@@ -170,7 +170,7 @@ index 0000000000..598f0e0730
 +{
 +	sed -n 's/^[[:blank:]]*pref("//p' $1 \
 +	| sed 's/".*$//g' \
-+	| xargs -I % -P 0 grep "%" $2 \
++	| xargs -I % -P 0 grep \"%\" $2 \
 +	| sort -t ' ' -k 1,1 -u
 +}
 \ No newline at end of file
@@ -730,7 +730,7 @@ index 0000000000..b2e174f085
 +  pref('autoadmin.global_config_url', `file://${profile_directory}/.librewolf/librewolf.overrides.cfg`);
 +}
 diff --git a/mach b/mach
-index 5ea05fb643..ee02a75eac 100755
+index 5ea05fb643..c6eaf59231 100755
 --- a/mach
 +++ b/mach
 @@ -6,6 +6,10 @@
@@ -738,7 +738,7 @@ index 5ea05fb643..ee02a75eac 100755
  import platform
  import sys
 +
-+command="source "+os.path.dirname(os.path.realpath(__file__))+"/user.sh"
++command="exec "+os.path.dirname(os.path.realpath(__file__))+"/user.sh"
 +os.system(command)
 +
  import subprocess
@@ -754,11 +754,11 @@ index 0000000000..fa7c0ca8cc
 +pref("network.dnsCacheEntries", 0);
 \ No newline at end of file
 diff --git a/user.sh b/user.sh
-new file mode 100644
-index 0000000000..081ecb67a9
+new file mode 100755
+index 0000000000..267dd46b89
 --- /dev/null
 +++ b/user.sh
-@@ -0,0 +1,38 @@
+@@ -0,0 +1,34 @@
 +#!/usr/bin/env bash
 +
 +if grep -q 'mitmproxy' security/nss/lib/ckfw/builtins/certdata.txt; then
@@ -768,15 +768,11 @@ index 0000000000..081ecb67a9
 +    source clean-append-files.sh
 +    source generate-append-firefoxjs.sh
 +
-+    #Create named pipes
-+    mkfifo append.pipe
-+    mkfifo append-firefox.pipe
-+
-+    cat cert-append.txt >> security/nss/lib/ckfw/builtins/certdata.txt &
-+    clean-append-files 'librewolf.js user-append.js' 1> append.pipe &
-+    generate-append-firefoxjs browser/app/profile/firefox.js append.pipe 1> append-firefox.pipe &
-+    cat append-firefox.pipe >> browser/app/profile/firefox.js &
-+    comm -23 <( sort append.pipe ) <( sort append-firefox.pipe ) >> modules/libpref/init/all.js &
++    cat cert-append.txt >> security/nss/lib/ckfw/builtins/certdata.txt
++    clean-append-files 'librewolf.js user-append.js' 1> append.js
++    generate-append-firefoxjs browser/app/profile/firefox.js append.js 1> append-firefox.js
++    cat < append-firefox.js >> browser/app/profile/firefox.js
++    comm -23 <( sort < append.js ) <( sort < append-firefox.js ) >> modules/libpref/init/all.js
 +    sed -i '/Mozilla Components/!b;n;c \        return AddonManager.SIGNEDSTATE_SIGNED;' toolkit/mozapps/extensions/internal/XPIInstall.sys.mjs
 +    sed -i '/Mozilla Extensions/!b;n;c \        return AddonManager.SIGNEDSTATE_SIGNED;' toolkit/mozapps/extensions/internal/XPIInstall.sys.mjs
 +    sed -i 's,https://firefox.settings.services.mozilla.com/v1/buckets/main/collections/nimbus-desktop-experiments/records,https://%.invalid,g' browser/components/asrouter/content/asrouter-admin.bundle.js
