@@ -62,8 +62,17 @@ update-firefox () {
 		cp --force --reflink=auto /home/$WHOAMI/Configuration/policies.json /usr/lib64/firefox/distribution/policies.json;\
 		doas -u $WHOAMI rm --recursive --force /home/$WHOAMI/.local/share/firefoxpwa/runtime/*;\
 		doas -u $WHOAMI cp --recursive --force --reflink=always /usr/lib64/firefox/* /home/$WHOAMI/.local/share/firefoxpwa/runtime;\
+		doas -u $WHOAMI bash -c "source /home/$WHOAMI/Configuration/aliases.sh; __update-firefox-profile .mozilla/firefox/tiuh6kpf.default";\
 		doas -u $WHOAMI echo \"Check changelog (https://github.com/arkenfox/user.js/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Achangelog)\""
 	fi
+}
+
+__update-firefox-profile () {
+	local WHOAMI=$(whoami)
+	local FIREFOXPREFSPATH="/home/$WHOAMI/Configuration/firefox-prefs/"
+	local FIREFOXPROFILEPATH="/home/$WHOAMI/$1"
+	rm "$FIREFOXPROFILEPATH/user.js"
+	sed "s|.*|$FIREFOXPREFSPATH&|g" prefs.list | while read -r PREF; do cat $PREF >> "$FIREFOXPROFILEPATH/user.js"; done
 }
 
 update-patch () {
