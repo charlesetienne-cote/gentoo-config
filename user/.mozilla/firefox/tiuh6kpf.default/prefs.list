@@ -1,3 +1,7 @@
 clear-on-shutdown.js
 no-webgl.js
 resist-fingerprinting.js
+no-cookies.js
+reduce-referer.js
+letterboxing.js
+no-session-store.js
