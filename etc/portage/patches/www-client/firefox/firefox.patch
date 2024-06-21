@@ -746,10 +746,10 @@ index 5ea05fb643..c6eaf59231 100755
  from textwrap import dedent, fill
 diff --git a/user-append.js b/user-append.js
 new file mode 100644
-index 0000000000..0bb5533870
+index 0000000000..7ccd6d59c5
 --- /dev/null
 +++ b/user-append.js
-@@ -0,0 +1,16 @@
+@@ -0,0 +1,31 @@
 +// Disable Firefox Content Blocking as UBlock Origin already does it
 +pref("privacy.trackingprotection.fingerprinting.enabled", false);
 +pref("privacy.trackingprotection.pbmode.enabled", false);
@@ -765,6 +765,21 @@ index 0000000000..0bb5533870
 +pref("browser.fixup.alternate.enabled", false);
 +pref("browser.urlbar.trimURLs", false);
 +pref("keyword.enabled", false);
++pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
++pref("full-screen-api.warning.delay", 0);
++pref("full-screen-api.warning.timeout", 0);
++pref("layout.spellcheckDefault", 0);
++pref("browser.translations.automaticallyPopup", false);
++pref("browser.startup.page", 0);
++pref("layout.frame_rate", 75);
++pref("accessibility.force_disabled", 1);
++pref("clipboard.autocopy", false);
++pref("security.mixed_content.block_active_content", true);
++pref("security.mixed_content.block_display_content", true);
++pref("extensions.blocklist.enabled", false);
++pref("devtools.debugger.remote-enabled", false);
++pref("devtools.chrome.enabled", false);
++pref("devtools.debugger.force-local", true);
 +pref("network.dnsCacheEntries", 0);
 \ No newline at end of file
 diff --git a/user.sh b/user.sh

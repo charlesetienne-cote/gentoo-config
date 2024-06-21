@@ -3,3 +3,4 @@ cp --force --reflink=auto /home/$DOAS_USER/Configuration/policies.json /usr/lib6
 doas -u $DOAS_USER rm --recursive --force /home/$DOAS_USER/.local/share/firefoxpwa/runtime/*
 doas -u $DOAS_USER cp --recursive --force --reflink=always /usr/lib64/firefox/* /home/$DOAS_USER/.local/share/firefoxpwa/runtime
 doas -u $DOAS_USER /usr/share/system-scripts/update-firefox/update-firefox-profile.sh .mozilla/firefox/tiuh6kpf.default $DOAS_USER
+doas -u $DOAS_USER /usr/share/system-scripts/update-firefox/update-firefox-profile.sh .mozilla/firefox/3v4f2jgx.Vanilla $DOAS_USER
