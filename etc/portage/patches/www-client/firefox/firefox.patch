@@ -746,10 +746,10 @@ index 5ea05fb643..c6eaf59231 100755
  from textwrap import dedent, fill
 diff --git a/user-append.js b/user-append.js
 new file mode 100644
-index 0000000000..7ccd6d59c5
+index 0000000000..7b87fb51ad
 --- /dev/null
 +++ b/user-append.js
-@@ -0,0 +1,31 @@
+@@ -0,0 +1,78 @@
 +// Disable Firefox Content Blocking as UBlock Origin already does it
 +pref("privacy.trackingprotection.fingerprinting.enabled", false);
 +pref("privacy.trackingprotection.pbmode.enabled", false);
@@ -758,30 +758,76 @@ index 0000000000..7ccd6d59c5
 +pref("privacy.trackingprotection.cryptomining.enabled", false);
 +pref("privacy.trackingprotection.enabled", false);
 +pref("privacy.trackingprotection.socialtracking.enabled", false);
++pref("privacy.antitracking.enableWebcompat", false);
 +pref("browser.contentblocking.database.enabled", false);
 +pref("browser.contentblocking.category", "custom");
++//Disable Firefox forms
 +pref("browser.formfill.enable", false);
++pref("extensions.formautofill.available", "off");
++//Disable Firefox screenshots
 +pref("extensions.screenshots.disabled", true);
++//Disable URL bar suggestions and alterations
 +pref("browser.fixup.alternate.enabled", false);
 +pref("browser.urlbar.trimURLs", false);
 +pref("keyword.enabled", false);
-+pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
++pref("browser.urlbar.groupLabels.enabled", false);
++pref("browser.urlbar.ctrlCanonizesURLs", false);
++//Disable Picture-in-picture videos
++pref("media.videocontrols.picture-in-picture.enabled", false);
++//Disable Fullscreen warnings
 +pref("full-screen-api.warning.delay", 0);
 +pref("full-screen-api.warning.timeout", 0);
++//Disable Spell checks
 +pref("layout.spellcheckDefault", 0);
++//Disable Firefox translation popup
 +pref("browser.translations.automaticallyPopup", false);
++//Set blank Firefox startup page
 +pref("browser.startup.page", 0);
++//Wait until tabs are selected to load
++pref("browser.newtab.preload", false);
++//Set Frame rate to 75fps
 +pref("layout.frame_rate", 75);
++//Disable accessibility services
 +pref("accessibility.force_disabled", 1);
++pref("devtools.accessibility.enabled", false);
++//Disable selection autocopy in system clipboard
 +pref("clipboard.autocopy", false);
++//Disable access to HTTP ressources on HTTPS sites
 +pref("security.mixed_content.block_active_content", true);
 +pref("security.mixed_content.block_display_content", true);
++//Disable extension blocklist
 +pref("extensions.blocklist.enabled", false);
++//Disable remote debugging
 +pref("devtools.debugger.remote-enabled", false);
 +pref("devtools.chrome.enabled", false);
 +pref("devtools.debugger.force-local", true);
++//Disable DNS cache
 +pref("network.dnsCacheEntries", 0);
-\ No newline at end of file
++//Disable Open with download option
++pref("browser.download.forbid_open_with", true);
++//Download in download directory
++pref("browser.download.useDownloadDir", true);
++//Disable extension pinging
++pref("extensions.getAddons.cache.enabled", false);
++//Disable Firefox narration
++pref("narrate.enabled", false);
++//Disable DNS Prefetching
++pref("network.dns.disablePrefetch", true);
++pref("network.dns.disablePrefetchFromHTTPS", true);
++//Disable proxy leaks
++pref("network.proxy.failover_direct", false);
++pref("network.proxy.allow_bypass", false);
++//Disable IPv6
++pref("network.dns.disableIPv6", true);
++//Disable extension updates
++pref("extensions.update.enabled", false);
++//Disable Signon related services
++pref("signon.management.page.breach-alerts.enabled", false);
++pref("signon.management.page.breachAlertUrl", "");
++pref("signon.management.page.enabled", false);
++pref("signon.generation.enabled", false);
++//Disable new features experiments
++pref("messaging-system.rsexperimentloader.enabled", false);
 diff --git a/user.sh b/user.sh
 new file mode 100755
 index 0000000000..267dd46b89
