@@ -78,6 +78,8 @@ media-sound/easyeffects -doc
 
 media-video/pipewire sound-server
 
+net-analyzer/wireshark qt6
+
 net-dns/dnsmasq dbus dnssec -dumpfile
 
 net-libs/nodejs -snapshot

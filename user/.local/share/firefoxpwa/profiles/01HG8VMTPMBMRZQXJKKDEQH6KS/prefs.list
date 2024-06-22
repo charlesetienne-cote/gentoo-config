@@ -13,7 +13,6 @@ security/no-mathml.js
 security/no-sensors.js
 security/no-webaudio.js
 security/no-webnotif.js
-security/no-track-micro-cam-status.js
 convenience/no-right-click-api.js
 convenience/no-autoplay.js
 convenience/no-translations.js

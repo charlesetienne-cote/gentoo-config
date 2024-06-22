@@ -1,7 +1,3 @@
-convenience/no-right-click-api.js
-convenience/no-autoplay.js
-convenience/no-keyboard-shortcut-api.js
-convenience/reduce-popup-allowed-events.js
 privacy/do-not-track-flag.js
 privacy/no-cache.js
 privacy/no-beacon.js
@@ -29,3 +25,8 @@ security/no-webnotif.js
 security/no-wasm.js
 security/no-multi-session-credentials.js
 security/no-track-micro-cam-status.js
+convenience/no-right-click-api.js
+convenience/no-autoplay.js
+convenience/no-keyboard-shortcut-api.js
+convenience/reduce-popup-allowed-events.js
+convenience/no-protocol-handler-popup.js

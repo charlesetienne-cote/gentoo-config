@@ -29,6 +29,36 @@
 ### tuple ### allow udp any 0.0.0.0/0 any 37.120.130.58 in
 -A ufw-user-input -p udp -s 37.120.130.58 -j ACCEPT
 
+### tuple ### allow any any 0.0.0.0/0 any 0.0.0.0/0 in_vpn0
+-A ufw-user-input -i vpn0 -j ACCEPT
+
+### tuple ### allow any any 0.0.0.0/0 any 0.0.0.0/0 out_vpn0
+-A ufw-user-output -o vpn0 -j ACCEPT
+
+### tuple ### allow any any 132.210.237.13 any 0.0.0.0/0 out
+-A ufw-user-output -d 132.210.237.13 -j ACCEPT
+
+### tuple ### allow any any 0.0.0.0/0 any 132.210.237.13 in
+-A ufw-user-input -s 132.210.237.13 -j ACCEPT
+
+### tuple ### allow any any 0.0.0.0/0 any 132.210.248.2 in
+-A ufw-user-input -s 132.210.248.2 -j ACCEPT
+
+### tuple ### allow any any 132.210.248.2 any 0.0.0.0/0 out
+-A ufw-user-output -d 132.210.248.2 -j ACCEPT
+
+### tuple ### allow any any 0.0.0.0/0 any 132.210.237.14 in
+-A ufw-user-input -s 132.210.237.14 -j ACCEPT
+
+### tuple ### allow any any 132.210.237.14 any 0.0.0.0/0 out
+-A ufw-user-output -d 132.210.237.14 -j ACCEPT
+
+### tuple ### allow any any 132.210.7.170 any 0.0.0.0/0 out
+-A ufw-user-output -d 132.210.7.170 -j ACCEPT
+
+### tuple ### allow any any 0.0.0.0/0 any 132.210.7.170 in
+-A ufw-user-input -s 132.210.7.170 -j ACCEPT
+
 ### END RULES ###
 
 ### LOGGING ###
