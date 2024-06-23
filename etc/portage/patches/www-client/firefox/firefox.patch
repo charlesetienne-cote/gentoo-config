@@ -1,6 +1,6 @@
 diff --git a/cert-append.txt b/cert-append.txt
 new file mode 100644
-index 0000000000..aa45f4ef3b
+index 0000000..aa45f4e
 --- /dev/null
 +++ b/cert-append.txt
 @@ -0,0 +1,123 @@
@@ -129,7 +129,7 @@ index 0000000000..aa45f4ef3b
 +CKA_TRUST_STEP_UP_APPROVED CK_BBOOL CK_FALSE
 diff --git a/clean-append-files.sh b/clean-append-files.sh
 new file mode 100644
-index 0000000000..692fdd0f4a
+index 0000000..692fdd0
 --- /dev/null
 +++ b/clean-append-files.sh
 @@ -0,0 +1,24 @@
@@ -160,7 +160,7 @@ index 0000000000..692fdd0f4a
 \ No newline at end of file
 diff --git a/generate-append-firefoxjs.sh b/generate-append-firefoxjs.sh
 new file mode 100644
-index 0000000000..f10756e131
+index 0000000..f10756e
 --- /dev/null
 +++ b/generate-append-firefoxjs.sh
 @@ -0,0 +1,9 @@
@@ -176,7 +176,7 @@ index 0000000000..f10756e131
 \ No newline at end of file
 diff --git a/librewolf.js b/librewolf.js
 new file mode 100644
-index 0000000000..b2e174f085
+index 0000000..b2e174f
 --- /dev/null
 +++ b/librewolf.js
 @@ -0,0 +1,549 @@
@@ -730,7 +730,7 @@ index 0000000000..b2e174f085
 +  pref('autoadmin.global_config_url', `file://${profile_directory}/.librewolf/librewolf.overrides.cfg`);
 +}
 diff --git a/mach b/mach
-index 5ea05fb643..c6eaf59231 100755
+index 5ea05fb..c6eaf59 100755
 --- a/mach
 +++ b/mach
 @@ -6,6 +6,10 @@
@@ -746,7 +746,7 @@ index 5ea05fb643..c6eaf59231 100755
  from textwrap import dedent, fill
 diff --git a/user-append.js b/user-append.js
 new file mode 100644
-index 0000000000..7b87fb51ad
+index 0000000..7b87fb5
 --- /dev/null
 +++ b/user-append.js
 @@ -0,0 +1,78 @@
@@ -830,7 +830,7 @@ index 0000000000..7b87fb51ad
 +pref("messaging-system.rsexperimentloader.enabled", false);
 diff --git a/user.sh b/user.sh
 new file mode 100755
-index 0000000000..267dd46b89
+index 0000000..267dd46
 --- /dev/null
 +++ b/user.sh
 @@ -0,0 +1,34 @@
