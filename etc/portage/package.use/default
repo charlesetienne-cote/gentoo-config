@@ -72,11 +72,13 @@ media-libs/libpng apng
 media-libs/libvpx postproc
 media-libs/mesa proprietary-codecs X gles1 gles2
 media-libs/phonon qt6 qt5 -vlc
+media-libs/phonon-vlc qt6 qt5
 media-libs/gd truetype fontconfig
 
 media-sound/easyeffects -doc
 
 media-video/pipewire sound-server
+media-video/vlc dbus ogg -vaapi
 
 net-analyzer/wireshark qt6
 

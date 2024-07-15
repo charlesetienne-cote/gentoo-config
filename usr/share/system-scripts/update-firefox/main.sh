@@ -19,3 +19,4 @@ doas -u $DOAS_USER /usr/share/system-scripts/update-firefox/update-firefox-profi
 doas -u $DOAS_USER /usr/share/system-scripts/update-firefox/update-firefox-profile.sh .local/share/firefoxpwa/profiles/01HG8W8V0HE1T552RSDE6T5S4F $DOAS_USER
 doas -u $DOAS_USER /usr/share/system-scripts/update-firefox/update-firefox-profile.sh .local/share/firefoxpwa/profiles/01HJ1KP19PYVD4GAMRV06VD3B4 $DOAS_USER
 doas -u $DOAS_USER /usr/share/system-scripts/update-firefox/update-firefox-profile.sh .local/share/firefoxpwa/profiles/01HWRZKY7VECNT8ZQHKJYKESN5 $DOAS_USER
+doas -u $DOAS_USER /usr/share/system-scripts/update-firefox/update-firefox-profile.sh .local/share/firefoxpwa/profiles/01HY94KARFG0D60D5ZK319VM9D $DOAS_USER

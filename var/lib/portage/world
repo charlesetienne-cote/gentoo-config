@@ -30,6 +30,7 @@ kde-apps/spectacle
 kde-plasma/plasma-meta
 mail-client/thunderbird
 media-sound/easyeffects
+net-analyzer/nmap
 net-dialup/minicom
 net-dns/dnsmasq
 net-firewall/ufw
