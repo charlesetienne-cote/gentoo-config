@@ -1,6 +1,6 @@
 diff --git a/cert-append.txt b/cert-append.txt
 new file mode 100644
-index 0000000..aa45f4e
+index 0000000000..aa45f4ef3b
 --- /dev/null
 +++ b/cert-append.txt
 @@ -0,0 +1,123 @@
@@ -129,7 +129,7 @@ index 0000000..aa45f4e
 +CKA_TRUST_STEP_UP_APPROVED CK_BBOOL CK_FALSE
 diff --git a/clean-append-files.sh b/clean-append-files.sh
 new file mode 100644
-index 0000000..692fdd0
+index 0000000000..692fdd0f4a
 --- /dev/null
 +++ b/clean-append-files.sh
 @@ -0,0 +1,24 @@
@@ -160,7 +160,7 @@ index 0000000..692fdd0
 \ No newline at end of file
 diff --git a/generate-append-firefoxjs.sh b/generate-append-firefoxjs.sh
 new file mode 100644
-index 0000000..f10756e
+index 0000000000..f10756e131
 --- /dev/null
 +++ b/generate-append-firefoxjs.sh
 @@ -0,0 +1,9 @@
@@ -176,10 +176,10 @@ index 0000000..f10756e
 \ No newline at end of file
 diff --git a/librewolf.js b/librewolf.js
 new file mode 100644
-index 0000000..b2e174f
+index 0000000000..2e9c1b86fe
 --- /dev/null
 +++ b/librewolf.js
-@@ -0,0 +1,549 @@
+@@ -0,0 +1,551 @@
 +
 +/** LIBREWOLF SETTINGS
 + * 
@@ -701,6 +701,8 @@ index 0000000..b2e174f
 +// disable captive portal
 +pref("network.captive-portal-service.enabled", false);
 +pref("captivedetect.canonicalURL", "");
++// disable Privacy-Preserving Attribution
++pref("dom.private-attribution.submission.enabled", false);
 +
 +/** [CATEGORY] WINDOWS
 + * the prefs in this section only apply to windows installations and they don't have any
@@ -730,7 +732,7 @@ index 0000000..b2e174f
 +  pref('autoadmin.global_config_url', `file://${profile_directory}/.librewolf/librewolf.overrides.cfg`);
 +}
 diff --git a/mach b/mach
-index 5ea05fb..c6eaf59 100755
+index 5ea05fb643..c6eaf59231 100755
 --- a/mach
 +++ b/mach
 @@ -6,6 +6,10 @@
@@ -746,7 +748,7 @@ index 5ea05fb..c6eaf59 100755
  from textwrap import dedent, fill
 diff --git a/user-append.js b/user-append.js
 new file mode 100644
-index 0000000..7b87fb5
+index 0000000000..7b87fb51ad
 --- /dev/null
 +++ b/user-append.js
 @@ -0,0 +1,78 @@
@@ -830,10 +832,10 @@ index 0000000..7b87fb5
 +pref("messaging-system.rsexperimentloader.enabled", false);
 diff --git a/user.sh b/user.sh
 new file mode 100755
-index 0000000..267dd46
+index 0000000000..74e5cc5e14
 --- /dev/null
 +++ b/user.sh
-@@ -0,0 +1,34 @@
+@@ -0,0 +1,36 @@
 +#!/usr/bin/env bash
 +
 +if grep -q 'mitmproxy' security/nss/lib/ckfw/builtins/certdata.txt; then
@@ -867,5 +869,7 @@ index 0000000..267dd46
 +    sed -i '/context-pocket/{$!{:begin N; /context-pocket.*>/d; t end b begin :end}}' browser/base/content/browser-context.inc
 +    sed -i '/appMenu-passwords-button/{$!{:begin N; /appMenu-passwords-button.*>/d; t end b begin :end}}' browser/base/content/appmenu-viewcache.inc.xhtml
 +    sed -i '/Passwords -->/{$!{:begin N; /Passwords -->.*groupbox>/d; t end b begin :end}}' browser/components/preferences/privacy.inc.xhtml
++    sed -i '/sideLoadedAddons.keys()/{$!{:begin N; s/sideLoadedAddons.keys().*;/&\n    for (let addon of addons.filter(addon => addon \&\& addon.seen === false \&\& addon.permissions \& AddonManager.PERM_CAN_ENABLE)) {await addon.markAsSeen(); await addon.enable();}/; t end b begin :end}}' toolkit/mozapps/extensions/internal/XPIProvider.sys.mjs
++    sed -i 's/XPIExports\.XPIDatabase\.SIGNED_TYPES\.has(aAddonType)/false/' toolkit/mozapps/extensions/internal/XPIInstall.sys.mjs
 +fi
 \ No newline at end of file
