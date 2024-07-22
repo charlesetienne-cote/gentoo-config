@@ -1,7 +1,11 @@
-cd /tmp
-UBLOCK_VERSION=$(curl -v https://github.com/gorhill/uBlock/releases/latest 2> >(sed -n 's/^.*location.*tag\///p') | tr -d '\r')
-wget "https://github.com/gorhill/uBlock/archive/refs/tags/$UBLOCK_VERSION.tar.gz"
-tar -xvzf "$UBLOCK_VERSION.tar.gz"
-cd "/tmp/uBlock-$UBLOCK_VERSION"
-make firefox
-cp dist/build/uBlock0.firefox.xpi "$FIREFOXPROFILEPATH/extensions/uBlock0@raymondhill.net.xpi"
+if [ ! -f "$FIREFOXPROFILEPATH/extensions/uBlock0@raymondhill.net.xpi" ]; then
+	cd /tmp
+	UBLOCK_VERSION=$(curl -v https://github.com/gorhill/uBlock/releases/latest 2> >(sed -n 's/^.*location.*tag\///p') | tr -d '\r')
+	if [ ! -d "/tmp/uBlock-$UBLOCK_VERSION" ]; then
+		wget --output-document="ublock.tar.gz" "https://github.com/gorhill/uBlock/archive/refs/tags/$UBLOCK_VERSION.tar.gz"
+		tar -xzf "ublock.tar.gz"
+	fi
+	cd "/tmp/uBlock-$UBLOCK_VERSION"
+	make --silent firefox
+	cp dist/build/uBlock0.firefox.xpi "$FIREFOXPROFILEPATH/extensions/uBlock0@raymondhill.net.xpi"
+fi
