@@ -1,0 +1,17 @@
+driver.switch_to.new_window('tab')
+driver.get("about:debugging#addons")
+ublockUUID = driver.find_element(By.XPATH, "//dd[text()='uBlock0@raymondhill.net']/parent::*/parent::*/div[2]/dd").text
+ublockURL = "moz-extension://"+ublockUUID+"/dashboard.html#settings.html"
+driver.get(ublockURL)
+driver.switch_to.frame(driver.find_element(By.ID, "iframe"))
+WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located((By.ID, "import")))
+driver.find_element(By.XPATH, "//input[@type='file']").send_keys(firefoxProfilePath+"/system-scripts/ublock-config.json")
+driver.execute_script("document.getElementById('restoreFilePicker').parentElement.classList.remove('hidden')")
+#driver.find_element(By.XPATH, "//input[@type='file']/parent::*").get_attribute('class').delete()
+WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located((By.XPATH, "//input[@type='file']/parent::*")))
+driver.find_element(By.ID, "import").click()
+driver.switch_to.window(driver.window_handles[0])
+driver.switch_to.new_window('tab')
+driver.get(ublockURL)
+driver.switch_to.frame(driver.find_element(By.ID, "iframe"))
+WebDriverWait(driver, 10).until(expected_conditions.presence_of_element_located((By.ID, "import")))
