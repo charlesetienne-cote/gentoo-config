@@ -3,7 +3,7 @@ FIREFOXPREFSPATH="/home/$2/Configuration/firefox-prefs/"
 export FIREFOXPROFILEPATH="/home/$2/$1"
 FIREFOXPWASRCPATH="/tmp/firefoxpwa-src/native/userchrome"
 shopt -s extglob
-rm -r $FIREFOXPROFILEPATH/!(places.sqlite|favicons.sqlite|permissions.sqlite|cookies.sqlite|system-scripts)
+rm -r $FIREFOXPROFILEPATH/!(places.sqlite|favicons.sqlite|permissions.sqlite|cookies.sqlite|system-scripts|storage)
 shopt -u extglob
 if [[ "$1" == *firefoxpwa* ]]; then
 	cp -rf "$FIREFOXPWASRCPATH/profile/chrome/." "$FIREFOXPROFILEPATH/chrome"

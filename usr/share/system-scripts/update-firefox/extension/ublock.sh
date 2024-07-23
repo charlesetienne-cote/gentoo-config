@@ -6,8 +6,10 @@ if [ ! -f "$FIREFOXPROFILEPATH/extensions/uBlock0@raymondhill.net.xpi" ]; then
 		tar -xzf "ublock.tar.gz"
 	fi
 	cd "/tmp/uBlock-$UBLOCK_VERSION"
-	sed -i 's/window.confirm(msg)/true/g' src/js/settings.js
-	sed -i 's/, startImportFilePicker/, handleImportFilePicker/' src/js/settings.js
-	make --silent firefox
+	if [ ! -f "/tmp/uBlock-$UBLOCK_VERSION/dist/build/uBlock0.firefox.xpi" ]; then
+		sed -i 's/window.confirm(msg)/true/g' src/js/settings.js
+		sed -i 's/, startImportFilePicker/, handleImportFilePicker/' src/js/settings.js
+		make --silent firefox
+	fi
 	cp dist/build/uBlock0.firefox.xpi "$FIREFOXPROFILEPATH/extensions/uBlock0@raymondhill.net.xpi"
 fi
