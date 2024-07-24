@@ -12,6 +12,7 @@ if [ -f "$FIREFOXPROFILEPATH/system-scripts/prefs.list" ]; then
 	sed "s|.*|$FIREFOXPREFSPATH&|g" $FIREFOXPROFILEPATH/system-scripts/prefs.list | while read -r PREF; do cat $PREF >> "$FIREFOXPROFILEPATH/user.js"; done
 fi
 mkdir $FIREFOXPROFILEPATH/extensions
+cp /tmp/langpack/langpack-fr@firefox.mozilla.org.xpi $FIREFOXPROFILEPATH/extensions/langpack-fr@firefox.mozilla.org.xpi
 if [ -f "$FIREFOXPROFILEPATH/system-scripts/ext.list" ]; then
 	sed "s|.*|/usr/share/system-scripts/update-firefox/extension/&|g" $FIREFOXPROFILEPATH/system-scripts/ext.list | while read -r EXTENSION; do source $EXTENSION; done
 fi
