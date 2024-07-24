@@ -18,6 +18,7 @@ app-portage/elogv
 app-portage/gentoolkit
 app-shells/bash-completion
 dev-debug/strace
+dev-python/selenium
 dev-util/ccache
 dev-vcs/git-lfs
 kde-apps/ark
@@ -36,6 +37,7 @@ net-dns/dnsmasq
 net-firewall/ufw
 net-im/signal-desktop-bin
 net-misc/chrony
+net-misc/geckodriver
 net-vpn/openconnect
 sys-apps/earlyoom
 sys-apps/memtest86+

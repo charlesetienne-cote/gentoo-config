@@ -748,10 +748,10 @@ index 5ea05fb643..c6eaf59231 100755
  from textwrap import dedent, fill
 diff --git a/user-append.js b/user-append.js
 new file mode 100644
-index 0000000000..7b87fb51ad
+index 0000000000..235fe99f65
 --- /dev/null
 +++ b/user-append.js
-@@ -0,0 +1,78 @@
+@@ -0,0 +1,80 @@
 +// Disable Firefox Content Blocking as UBlock Origin already does it
 +pref("privacy.trackingprotection.fingerprinting.enabled", false);
 +pref("privacy.trackingprotection.pbmode.enabled", false);
@@ -830,6 +830,9 @@ index 0000000000..7b87fb51ad
 +pref("signon.generation.enabled", false);
 +//Disable new features experiments
 +pref("messaging-system.rsexperimentloader.enabled", false);
++//Disable session restore infobar
++pref("browser.startup.couldRestoreSession.count", -1);
+\ No newline at end of file
 diff --git a/user.sh b/user.sh
 new file mode 100755
 index 0000000000..74e5cc5e14

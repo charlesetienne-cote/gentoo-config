@@ -1,5 +1,5 @@
-dev-lang/python:3.12
-<sys-devel/llvm-17
-sys-devel/llvm:18
-<sys-devel/llvmgold-17
->=sys-devel/llvmgold-18
+dev-lang/python:3.13
+<sys-devel/llvm-18
+sys-devel/llvm:19
+<sys-devel/llvmgold-18
+>=sys-devel/llvmgold-19
