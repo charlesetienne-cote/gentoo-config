@@ -1,3 +1,4 @@
+driver.switch_to.window(driver.window_handles[0])
 driver.switch_to.new_window('tab')
 driver.get("about:debugging#addons")
 ublockUUID = driver.find_element(By.XPATH, "//dd[text()='uBlock0@raymondhill.net']/parent::*/parent::*/div[2]/dd").text
