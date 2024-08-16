@@ -29,6 +29,12 @@
 ### tuple ### allow udp any 0.0.0.0/0 any 37.120.130.58 in
 -A ufw-user-input -p udp -s 37.120.130.58 -j ACCEPT
 
+### tuple ### allow udp any 87.101.92.29 any 0.0.0.0/0 out
+-A ufw-user-output -p udp -d 87.101.92.29 -j ACCEPT
+
+### tuple ### allow udp any 0.0.0.0/0 any 87.101.92.29 in
+-A ufw-user-input -p udp -s 87.101.92.29 -j ACCEPT
+
 ### tuple ### allow any any 0.0.0.0/0 any 0.0.0.0/0 in_vpn0
 -A ufw-user-input -i vpn0 -j ACCEPT
 

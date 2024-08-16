@@ -1,7 +1,6 @@
 # Remove packages from system set
 -*sys-apps/kmod
 -*sys-apps/less
--*net-misc/rsync
 -*sys-apps/iproute2
 -*sys-apps/man-pages
 -*sys-fs/e2fsprogs
