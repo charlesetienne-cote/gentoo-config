@@ -130,7 +130,7 @@ virtual/libcrypt static-libs
 
 www-client/firefox eme-free hwaccel openh264 system-png system-python-libs pulseaudio dbus
 
-x11-libs/libdrm VIDEO_CARDS: radeon
+x11-libs/libdrm VIDEO_CARDS: intel
 x11-libs/libxkbcommon X
 x11-libs/cairo X
 x11-libs/gtk+ X
