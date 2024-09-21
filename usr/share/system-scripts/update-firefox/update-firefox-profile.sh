@@ -18,4 +18,5 @@ if [ -f "$FIREFOXPROFILEPATH/system-scripts/actions.list" ]; then
 fi
 if [[ "$1" == *firefoxpwa* ]]; then
 	cp -rf "$FIREFOXPWASRCPATH/profile/chrome/." "$FIREFOXPROFILEPATH/chrome"
+	sed -in -n "/extensions.webextensions.uuids/p" $FIREFOXPROFILEPATH/prefs.js
 fi
