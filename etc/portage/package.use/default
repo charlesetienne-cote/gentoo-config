@@ -78,7 +78,7 @@ media-libs/gd truetype fontconfig
 media-sound/easyeffects -doc
 
 media-video/pipewire sound-server
-media-video/vlc dbus ogg -vaapi
+media-video/vlc dbus ogg pulseaudio ffmpeg ssl gcrypt dvbpsi -encode -libsamplerate -ncurses -svg -vaapi
 
 net-analyzer/wireshark qt6
 
