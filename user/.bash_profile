@@ -24,6 +24,7 @@ if [[ -f ~/.bashrc ]] ; then
 			KWIN_PID=$!
 			export WAYLAND_DISPLAY="wayland-0"
 			gentoo-pipewire-launcher restart > /dev/null &
+			/usr/libexec/org_kde_powerdevil > /dev/null &
 			kded6 > /dev/null &
 			/lib64/libexec/pam_kwallet_init > /dev/null &
 			/usr/lib64/libexec/polkit-kde-authentication-agent-1 > /dev/null &

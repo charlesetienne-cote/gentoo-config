@@ -10,7 +10,7 @@ make oldconfig
 make -j6
 find /boot -mindepth 1 -not -name 'memtest.efi64' -delete
 rm --recursive --force /lib/modules/*
-grub-install --efi-directory=/efi
+grub-install --efi-directory=/efi --force
 kernelVer=$(doas -u $DOAS_USER make --no-print-directory kernelversion)
 make install
 mv /boot/vmlinuz /boot/vmlinuz-$kernelVer
