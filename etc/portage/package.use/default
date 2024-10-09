@@ -84,7 +84,7 @@ net-analyzer/wireshark qt6
 
 net-dns/dnsmasq dbus dnssec -dumpfile
 
-net-libs/nodejs -snapshot
+net-libs/nodejs npm -snapshot
 net-libs/ngtcp2 gnutls
 net-libs/webkit-gtk -jpeg2k
 net-libs/libquotient qt6
