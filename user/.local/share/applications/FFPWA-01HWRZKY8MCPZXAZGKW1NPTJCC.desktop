@@ -1,0 +1,23 @@
+[Desktop Entry]
+Actions=
+Categories=GTK;WebApps;Audio;AudioVideo;Player;
+Comment[fr_CA]=Privacy respecting YouTube Music Frontend.
+Comment=Privacy respecting YouTube Music Frontend.
+Exec=/home/charles/Configuration/Hyperpipe.sh
+GenericName[fr_CA]=
+GenericName=
+Icon=FFPWA-01HWRZKY8MCPZXAZGKW1NPTJCC
+Keywords=;
+MimeType=
+Name[fr_CA]=Hyperpipe
+Name=Hyperpipe
+NoDisplay=false
+Path=
+StartupNotify=true
+StartupWMClass=FFPWA-01HWRZKY8MCPZXAZGKW1NPTJCC
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=1.4
+X-KDE-SubstituteUID=false
+X-KDE-Username=
