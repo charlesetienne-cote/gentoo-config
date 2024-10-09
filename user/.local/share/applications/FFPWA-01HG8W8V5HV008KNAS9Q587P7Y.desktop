@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Version=1.4
+Name=USherbrooke
+Comment=
+Keywords=;
+Categories=GTK;WebApps;;
+Icon=FFPWA-01HG8W8V5HV008KNAS9Q587P7Y
+Exec=/usr/bin/firefoxpwa site launch 01HG8W8V5HV008KNAS9Q587P7Y --protocol %u
+Actions=
+MimeType=
+Terminal=false
+StartupNotify=true
+StartupWMClass=FFPWA-01HG8W8V5HV008KNAS9Q587P7Y
