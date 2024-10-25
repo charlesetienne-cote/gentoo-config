@@ -1,3 +1,5 @@
+app-accessibility/at-spi2-core introspection
+
 app-admin/keepassxc -network
 
 app-arch/libarchive -e2fsprogs
@@ -8,6 +10,10 @@ app-crypt/gcr gtk
 app-crypt/gnupg -wks
 
 app-editors/neovim -lto -nvimpager
+
+app-emulation/libvirt-glib introspection
+app-emulation/qemu gnutls
+app-emulation/virt-manager gui
 
 app-office/libreoffice -base clang pdfimport kde qt6
 
@@ -51,7 +57,7 @@ kde-frameworks/kitemmodels qml
 kde-frameworks/knotifications X phonon
 kde-frameworks/kwindowsystem X
 kde-frameworks/prison qml
-kde-frameworks/sonnet -hunspell qml
+kde-frameworks/sonnet hunspell qml
 
 kde-plasma/kdeplasma-addons -alternate-calendar
 kde-plasma/kwin lock
@@ -65,10 +71,12 @@ media-gfx/blender -color-management -cycles -dds -embree -ffmpeg -fftw -fluid -n
 media-gfx/graphviz perl
 
 media-libs/freetype brotli
-media-libs/harfbuzz -cairo
+media-libs/harfbuzz introspection -cairo
+media-libs/gstreamer introspection
 media-libs/libepoxy X
 media-libs/libglvnd X
 media-libs/libpng apng
+media-libs/libva-intel-media-driver -redistributable
 media-libs/libvpx postproc
 media-libs/mesa proprietary-codecs X gles1 gles2
 media-libs/phonon qt6 qt5 -vlc
@@ -82,14 +90,17 @@ media-video/vlc dbus ogg pulseaudio ffmpeg ssl gcrypt dvbpsi -encode -libsampler
 
 net-analyzer/wireshark qt6
 
-net-dns/dnsmasq dbus dnssec -dumpfile
+net-dns/dnsmasq dbus dnssec ipv6 script -dumpfile
 
+net-libs/gnutls pkcs11 tools
+net-libs/gtk-vnc introspection
 net-libs/nodejs npm -snapshot
 net-libs/ngtcp2 gnutls
 net-libs/webkit-gtk -jpeg2k
 net-libs/libquotient qt6
 
 net-misc/networkmanager -concheck elogind -ppp -wext connection-sharing nftables dhcpcd -modemmanager
+net-misc/spice-gtk usbredir introspection
 
 net-vpn/openconnect gnutls
 
@@ -121,6 +132,7 @@ sys-fs/udisks elogind
 sys-kernel/gentoo-sources experimental
 sys-kernel/linux-firmware savedconfig
 
+sys-libs/libosinfo introspection
 sys-libs/libxcrypt static-libs
 sys-libs/zlib minizip
 
@@ -133,4 +145,8 @@ www-client/firefox eme-free hwaccel openh264 system-png system-python-libs pulse
 x11-libs/libdrm VIDEO_CARDS: intel
 x11-libs/libxkbcommon X
 x11-libs/cairo X
-x11-libs/gtk+ X
+x11-libs/gdk-pixbuf introspection
+x11-libs/gtk+ introspection X
+x11-libs/gtksourceview introspection
+x11-libs/pango introspection
+x11-libs/vte introspection

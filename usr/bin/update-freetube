@@ -1,2 +1,2 @@
 #!/bin/bash
-source /usr/share/system-scripts/privilege-escalation.sh "/usr/share/system-scripts/update-freetube/main.sh"
+source /usr/share/system-scripts/update-freetube/main.sh

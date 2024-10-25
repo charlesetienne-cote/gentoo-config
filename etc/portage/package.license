@@ -1,1 +1,2 @@
 sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE
+media-libs/libva-intel-media-driver @BINARY-REDISTRIBUTABLE
