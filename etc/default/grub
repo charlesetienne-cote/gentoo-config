@@ -65,7 +65,7 @@ GRUB_CMDLINE_LINUX="crypt_root=UUID=76657010-c690-4eec-a9fe-3d4ec4503faf root=UU
 GRUB_DISABLE_LINUX_UUID=true
 
 # Uncomment to disable generation of recovery mode menu entries
-#GRUB_DISABLE_RECOVERY=true
+GRUB_DISABLE_RECOVERY=true
 
 # Uncomment to disable generation of the submenu and put all choices on
 # the top-level menu.
@@ -78,3 +78,5 @@ GRUB_DISABLE_LINUX_UUID=true
 # to know when they can make a choice on the menu.
 #GRUB_INIT_TUNE="60 800 1"
 
+#Grub-btrfs
+GRUB_BTRFS_SNAPSHOT_KERNEL_PARAMETERS="rd.live.overlay.readonly=1"
