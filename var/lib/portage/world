@@ -8,6 +8,7 @@ app-backup/grub-btrfs
 app-backup/snapper
 app-editors/neovim
 app-editors/vscodium
+app-emulation/virt-manager
 app-eselect/eselect-repository
 app-misc/hyfetch
 app-misc/openrgb
