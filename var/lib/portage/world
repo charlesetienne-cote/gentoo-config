@@ -54,4 +54,5 @@ sys-kernel/linux-firmware
 sys-process/htop
 www-client/firefox
 www-plugins/firefoxpwa
+x11-libs/libnotify
 x11-terms/alacritty

@@ -1,6 +1,15 @@
 doas -u $DOAS_USER killall -q firefox
+doas -u $DOAS_USER killall -q http-server
 cp --force --reflink=auto /home/$DOAS_USER/Configuration/policies.json /usr/lib64/firefox/distribution/policies.json
-mv /usr/lib64/firefox/distribution/extensions/langpack-fr@firefox.mozilla.org.xpi /usr/lib64/firefox/system-scripts/langpack-fr@firefox.mozilla.org.xpi
+if [ ! -d /usr/lib64/firefox/system-scripts ]; then
+	mkdir --parents /usr/lib64/firefox/system-scripts
+fi
+if [ ! -f /usr/lib64/firefox/distribution/extensions/langpack-fr@firefox.mozilla.org.xpi ]; then
+	mv /usr/lib64/firefox/distribution/extensions/langpack-fr@firefox.mozilla.org.xpi /usr/lib64/firefox/system-scripts/langpack-fr@firefox.mozilla.org.xpi
+fi
+if [ ! -d /home/$DOAS_USER/.local/share/firefoxpwa/runtime ]; then
+	doas -u $DOAS_USER mkdir --parents /home/$DOAS_USER/.local/share/firefoxpwa/runtime
+fi
 doas -u $DOAS_USER rm --recursive --force /home/$DOAS_USER/.local/share/firefoxpwa/runtime/*
 doas -u $DOAS_USER cp --recursive --force --reflink=always /usr/lib64/firefox/* /home/$DOAS_USER/.local/share/firefoxpwa/runtime
 if [ ! -d /tmp/firefoxpwa-src ]; then
