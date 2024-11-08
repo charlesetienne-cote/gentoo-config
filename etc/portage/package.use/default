@@ -79,6 +79,7 @@ media-libs/libpng apng
 media-libs/libva-intel-media-driver -redistributable
 media-libs/libvpx postproc
 media-libs/mesa proprietary-codecs X gles1 gles2
+media-libs/opencv -eigen -features2d -ffmpeg -opencl -opengl -openmp -vaapi
 media-libs/phonon qt6 qt5 -vlc
 media-libs/phonon-vlc qt6 qt5
 media-libs/gd truetype fontconfig
