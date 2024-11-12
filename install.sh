@@ -85,12 +85,24 @@ nano /etc/portage/make.conf
 	MAKEOPTS="-j6"
 	EMERGE_DEFAULT_OPTS="--jobs 3"
 emerge --ask --oneshot --quiet dev-vcs/git
+emerge --ask --oneshot --quiet app-admin/doas
 su charles
 cd
 mkdir Git
 cd Git
 git clone https://github.com/charlesetienne-cote/gentoo-config.git
 cd gentoo-config
+exit
+cp /home/charles/Git/gentoo-config/etc/doas.conf /etc/doas.conf
+su charles
+cd /home/charles/Git/gentoo-config
 bash apply-config.sh
+exit
+emerge --ask --oneshot --quiet app-portage/eix
+rm -rf /var/db/repos/gentoo
+eix-sync
+su charles
+update
 
 # 6- Install bootloader and kernel
+emerge --ask --oneshot --quiet sys-kernel/gentoo-sources
