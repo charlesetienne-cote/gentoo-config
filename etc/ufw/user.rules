@@ -83,6 +83,12 @@
 ### tuple ### allow any any 0.0.0.0/0 any 0.0.0.0/0 in_virbr0
 -A ufw-user-input -i virbr0 -j ACCEPT
 
+### tuple ### route:allow any any 0.0.0.0/0 any 0.0.0.0/0 in_virbr0!out_IVPN
+-A ufw-user-forward -i virbr0 -o IVPN -j ACCEPT
+
+### tuple ### route:allow any any 0.0.0.0/0 any 0.0.0.0/0 in_IVPN!out_virbr0
+-A ufw-user-forward -i IVPN -o virbr0 -j ACCEPT
+
 ### END RULES ###
 
 ### LOGGING ###

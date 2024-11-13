@@ -98,13 +98,9 @@ Description=Paramètres de fenêtre pour « thunderbird »
 clientmachine=localhost
 desktops=f01355aa-2a5d-4db2-a60e-78115bbb6049
 desktopsrule=2
-position=0,0
-positionrule=3
-size=2560,1396
-sizerule=3
 title=Signal (6)
 windowrole=browser-window
-wmclass=thunderbird
+wmclass=thunderbird-esr
 wmclassmatch=1
 
 [235110d1-6eec-4b47-ae65-6d67f33a47c7]
