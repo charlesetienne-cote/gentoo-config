@@ -10,7 +10,7 @@
 
 GRUB_DISTRIBUTOR="Gentoo"
 GRUB_ENABLE_CRYPTODISK=y
-GRUB_CMDLINE_LINUX="crypt_root=UUID=c13ef6c5-5df3-4304-97bc-d200e5aab231 root=UUID=9421bd34-8790-4c60-a8f2-7003e24f4f85 dolvm amd_pstate.shared_mem=1 amd_pstate=active init=/sbin/openrc-init"
+GRUB_CMDLINE_LINUX="dolvm init=/sbin/openrc-init rd.neednet=1 ip=dhcp"
 
 # Default menu entry
 #GRUB_DEFAULT=0

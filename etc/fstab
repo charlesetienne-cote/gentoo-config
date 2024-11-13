@@ -27,9 +27,5 @@
 #UUID=58e72203-57d1-4497-81ad-97655bd56494		/		ext4		noatime		0 1
 #LABEL=swap		none		swap		sw		0 0
 #/dev/cdrom		/mnt/cdrom	auto		noauto,ro	0 0
-UUID=56A6-5007 /efi  vfat  umask=0077  0  2
-UUID=9421bd34-8790-4c60-a8f2-7003e24f4f85  /  btrfs  defaults,subvol=@,compress=zstd:1,space_cache=v2,discard=async  0  1
-UUID=9421bd34-8790-4c60-a8f2-7003e24f4f85 /home btrfs defaults,subvol=@home,compress=zstd:1,space_cache=v2,discard=async 0 2
-UUID=9421bd34-8790-4c60-a8f2-7003e24f4f85 /var/log btrfs defaults,subvol=@varlog,compress=zstd:1,space_cache=v2,discard=async 0 2
-UUID=9421bd34-8790-4c60-a8f2-7003e24f4f85 /tmp btrfs defaults,subvol=@tmp,compress=zstd:1,space_cache=v2,discard=async 0 0
-UUID=9421bd34-8790-4c60-a8f2-7003e24f4f85 /snapshots btrfs defaults,subvol=@snapshots,compress=zstd:1,space_cache=v2,discard=async 0 0
+UUID=7F55-056D /efi  vfat  umask=0077  0  2
+UUID=3c684e90-bca1-4cb6-9efa-b6a8f958e5c5  /  btrfs  defaults,subvol=@,compress=zstd:1,space_cache=v2,discard=async  0  1
