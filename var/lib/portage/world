@@ -13,6 +13,6 @@ sys-boot/grub
 sys-fs/btrfs-progs
 sys-fs/dosfstools
 sys-fs/lvm2
-sys-kernel/dracut
+sys-kernel/dracut-crypt-ssh
 sys-kernel/gentoo-sources
 sys-process/htop
