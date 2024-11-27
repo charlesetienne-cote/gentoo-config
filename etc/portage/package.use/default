@@ -61,7 +61,7 @@ kde-frameworks/sonnet hunspell qml
 
 kde-plasma/kdeplasma-addons -alternate-calendar
 kde-plasma/kwin lock
-kde-plasma/plasma-meta elogind firewall gtk legacy-systray pulseaudio -xwayland -browser-integration -colord -crash-handler -crypt -display-manager -sddm -wallpapers
+kde-plasma/plasma-meta cups elogind firewall gtk legacy-systray pulseaudio -xwayland -browser-integration -colord -crash-handler -crypt -display-manager -sddm -wallpapers
 kde-plasma/plasma-workspace -policykit -wallpaper-metadata
 kde-plasma/plasma-nm openconnect
 
@@ -101,6 +101,11 @@ net-libs/libquotient qt6
 
 net-misc/networkmanager -concheck elogind -ppp -wext connection-sharing nftables dhcpcd -modemmanager
 net-misc/spice-gtk usbredir introspection
+
+net-print/cups usb
+net-print/cups-meta pdf postscript
+net-print/libcupsfilters pdf postscript png jpeg exif
+net-print/libppd postscript
 
 net-vpn/openconnect gnutls
 
