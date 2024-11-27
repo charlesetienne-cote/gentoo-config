@@ -4,3 +4,13 @@ kde-plasma/plasma-welcome-9999
 kde-plasma/xdg-desktop-portal-kde-9999
 sys-apps/xdg-desktop-portal-gtk-9999
 x11-base/xwayland-9999
+x11-themes/adwaita-icon-theme-9999
+virtual/acl-0-r2
+sys-apps/acl-9999
+app-crypt/tpm2-tss-9999
+virtual/mailx-4
+kde-frameworks/ktexteditor-9999
+kde-apps/kio-extras-9999
+# x11-base/xorg-proto-9999
+net-libs/gtk-vnc-9999
+net-misc/spice-gtk-9999

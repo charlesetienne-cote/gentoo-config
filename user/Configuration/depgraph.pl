@@ -30,3 +30,4 @@ gv::write($G, "world-dependencies.dot");
 `sed -i -e 's/ ";/";/g' world-dependencies.dot`;
 
 # See emerge -pvc category/package for custom equery depends
+# Or emerge --pretend --verbose --depclean

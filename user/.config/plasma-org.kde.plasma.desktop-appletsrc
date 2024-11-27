@@ -5,23 +5,6 @@ wheel:Vertical;NoModifier=org.kde.switchdesktop
 [ActionPlugins][1]
 RightButton;NoModifier=org.kde.contextmenu
 
-[Containments][1]
-ItemGeometries-0x0=
-ItemGeometries-1680x1050=
-ItemGeometries-2560x1440=
-ItemGeometriesHorizontal=
-activityId=2687532b-09fd-42e8-91ab-d4fe1b135188
-formfactor=0
-immutability=1
-lastScreen=0
-location=0
-plugin=org.kde.plasma.folder
-wallpaperplugin=org.kde.image
-
-[Containments][1][General]
-ToolBoxButtonState=topcenter
-ToolBoxButtonX=600
-
 [Containments][2]
 activityId=
 formfactor=2
@@ -340,6 +323,17 @@ PreloadWeight=42
 extraItems=org.kde.plasma.notifications,org.kde.plasma.clipboard,org.kde.plasma.mediacontroller,org.kde.plasma.devicenotifier,org.kde.plasma.battery,org.kde.plasma.manage-inputmethod,org.kde.plasma.keyboardlayout,org.kde.plasma.networkmanagement,org.kde.kscreen,org.kde.plasma.keyboardindicator,org.kde.plasma.volume,org.kde.plasma.brightness
 knownItems=org.kde.plasma.notifications,org.kde.plasma.clipboard,org.kde.plasma.mediacontroller,org.kde.plasma.devicenotifier,org.kde.plasma.battery,org.kde.plasma.manage-inputmethod,org.kde.plasma.keyboardlayout,org.kde.plasma.networkmanagement,org.kde.kscreen,org.kde.plasma.keyboardindicator,org.kde.plasma.volume,org.kde.plasma.brightness
 
+[Containments][72]
+ItemGeometries-1536x864=
+ItemGeometriesHorizontal=
+activityId=b4bf3023-126d-40af-af9c-28da8f1f772e
+formfactor=0
+immutability=1
+lastScreen=0
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
+
 [Containments][8]
 activityId=
 formfactor=2
@@ -432,6 +426,10 @@ plugin=org.kde.plasma.brightness
 [Containments][8][Applets][27][Configuration]
 PreloadWeight=77
 
+[Containments][8][Applets][73]
+immutability=1
+plugin=org.kde.plasma.battery
+
 [Containments][8][Applets][74]
 immutability=1
 plugin=org.kde.plasma.cameraindicator
@@ -448,10 +446,10 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][8][General]
-extraItems=org.kde.plasma.notifications,org.kde.plasma.clipboard,org.kde.plasma.mediacontroller,org.kde.plasma.devicenotifier,org.kde.plasma.manage-inputmethod,org.kde.plasma.keyboardlayout,org.kde.plasma.networkmanagement,org.kde.plasma.keyboardindicator,org.kde.plasma.volume,org.kde.plasma.brightness
+extraItems=org.kde.plasma.notifications,org.kde.plasma.clipboard,org.kde.plasma.mediacontroller,org.kde.plasma.devicenotifier,org.kde.plasma.manage-inputmethod,org.kde.plasma.keyboardlayout,org.kde.plasma.networkmanagement,org.kde.plasma.keyboardindicator,org.kde.plasma.volume,org.kde.plasma.brightness,org.kde.plasma.battery
 knownItems=org.kde.plasma.notifications,org.kde.plasma.clipboard,org.kde.plasma.mediacontroller,org.kde.plasma.devicenotifier,org.kde.plasma.battery,org.kde.plasma.manage-inputmethod,org.kde.plasma.keyboardlayout,org.kde.plasma.networkmanagement,org.kde.kscreen,org.kde.plasma.keyboardindicator,org.kde.plasma.volume,org.kde.plasma.brightness
-shownItems=org.kde.plasma.brightness
+shownItems=org.kde.plasma.brightness,org.kde.plasma.battery
 
 [ScreenMapping]
 itemsOnDisabledScreens=
-screenMapping=desktop:/APP 5,0,2687532b-09fd-42e8-91ab-d4fe1b135188
+screenMapping=desktop:/Photos 5@8,0,b4bf3023-126d-40af-af9c-28da8f1f772e,desktop:/Gmail Pre 2021.7z,0,b4bf3023-126d-40af-af9c-28da8f1f772e,desktop:/Gmail 2021.7z,0,b4bf3023-126d-40af-af9c-28da8f1f772e,desktop:/APP 5,0,2687532b-09fd-42e8-91ab-d4fe1b135188,desktop:/2021-01-05_la-pocatiere.zip,0,b4bf3023-126d-40af-af9c-28da8f1f772e,desktop:/Photos,0,b4bf3023-126d-40af-af9c-28da8f1f772e,desktop:/photos,0,b4bf3023-126d-40af-af9c-28da8f1f772e,desktop:/Cégep-20221225T211052Z-001.zip,0,b4bf3023-126d-40af-af9c-28da8f1f772e,desktop:/Config FreshTomato,0,b4bf3023-126d-40af-af9c-28da8f1f772e

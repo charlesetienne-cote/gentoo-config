@@ -40,7 +40,6 @@ net-vpn/openconnect
 sys-apps/earlyoom
 sys-apps/memtest86+
 sys-apps/yarn
-sys-block/partitionmanager
 sys-boot/grub
 sys-fs/btrfs-progs
 sys-fs/dosfstools
