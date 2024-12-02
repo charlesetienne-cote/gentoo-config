@@ -107,9 +107,15 @@ update
 # 6- Install bootloader and kernel
 emerge --ask --oneshot --quiet sys-kernel/gentoo-sources
 emerge --ask --oneshot --quiet sys-kernel/efibootmgr
+emerge --ask --oneshot sys-apps/dbus
 cd /usr/src/linux
 mkdir /efi/EFI
 efibootmgr --create --disk /dev/vda --label "Gentoo" --part 1 --loader "\EFI\bzImage.efi" -u "root=/dev/vda4 initrd=\EFI\initramfs.cpio rd.neednet=1 ip=dhcp"
 make -j6
 cp /usr/src/linux/arch/arm64/boot/Image /efi/EFI/vmlinuz.efi
 
+# 7- Create initramfs
+mkdir --parents /usr/src/initramfs/{bin,dev,etc,lib,lib64,mnt/root,proc,root,sbin,sys}
+USE="-pam static" emerge --ask --oneshot --root=/usr/src/initramfs sys-apps/busybox
+USE="-udev -readline static" emerge --ask --oneshot --root=/usr/src/initramfs sys-fs/lvm2
+USE="-udev -gcrypt -openssl -nls nettle static" emerge --ask --oneshot --root=/usr/src/initramfs sys-fs/cryptsetup
