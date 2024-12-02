@@ -117,5 +117,5 @@ cp /usr/src/linux/arch/arm64/boot/Image /efi/EFI/vmlinuz.efi
 # 7- Create initramfs
 mkdir --parents /usr/src/initramfs/{bin,dev,etc,lib,lib64,mnt/root,proc,root,sbin,sys}
 USE="-pam static" emerge --ask --oneshot --root=/usr/src/initramfs sys-apps/busybox
-USE="-udev -readline static" emerge --ask --oneshot --root=/usr/src/initramfs sys-fs/lvm2
+USE="-udev -readline static" emerge --ask --oneshot sys-fs/lvm2
 USE="-udev -gcrypt -openssl -nls nettle static" emerge --ask --oneshot --root=/usr/src/initramfs sys-fs/cryptsetup
