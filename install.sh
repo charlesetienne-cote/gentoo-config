@@ -115,7 +115,30 @@ make -j6
 cp /usr/src/linux/arch/arm64/boot/Image /efi/EFI/vmlinuz.efi
 
 # 7- Create initramfs
+USE="-pam" emerge --ask --oneshot sys-apps/busybox
+USE="-udev -readline" emerge --ask --oneshot sys-fs/lvm2
+USE="-udev -gcrypt -openssl -nls nettle ssh" emerge --ask --oneshot sys-fs/cryptsetup
 mkdir --parents /usr/src/initramfs/{bin,dev,etc,lib,lib64,mnt/root,proc,root,sbin,sys}
-USE="-pam static" emerge --ask --oneshot --root=/usr/src/initramfs sys-apps/busybox
-USE="-udev -readline static" emerge --ask --oneshot sys-fs/lvm2
-USE="-udev -gcrypt -openssl -nls nettle static" emerge --ask --oneshot --root=/usr/src/initramfs sys-fs/cryptsetup
+mknod -m 622 /usr/src/initramfs/dev/console c 5 1
+nano /usr/src/initramfs/init
+chmod +x /usr/src/initramfs/init
+lddtree /usr/bin/busybox
+cp /usr/bin/busybox /usr/src/initramfs/bin/busybox
+lddtree /usr/bin/cryptsetup
+cp /usr/bin/cryptsetup /usr/src/initramfs/bin/cryptsetup
+cp /usr/lib64/libcryptsetup.so.12 /usr/src/initramfs/lib64/libcryptsetup.so.12
+cp /usr/lib64/libdevmapper.so.1.02 /usr/src/initramfs/lib64/libdevmapper.so.1.02
+cp /usr/lib64/libm.so.6 /usr/src/initramfs/lib64/libm.so.6
+cp /usr/lib64/libnettle.so.8 /usr/src/initramfs/lib64/libnettle.so.8
+cp /usr/lib64/libargon2.so.1 /usr/src/initramfs/lib64/libargon2.so.1
+cp /usr/lib64/libjson-c.so.5 /usr/src/initramfs/lib64/libjson-c.so.5
+cp /usr/lib64/libpopt.so.0 /usr/src/initramfs/lib64/libpopt.so.0
+cp /usr/lib64/libuuid.so.1 /usr/src/initramfs/lib64/libuuid.so.1
+cp /usr/lib64/libblkid.so.1 /usr/src/initramfs/lib64/libblkid.so.1
+cp /usr/lib64/libc.so.6 /usr/src/initramfs/lib64/libc.so.6
+cp /lib/ld-linux-aarch64.so.1 /usr/src/initramfs/lib/ld-linux-aarch64.so.1
+lddtree /usr/bin/cryptsetup-ssh
+cp /usr/bin/cryptsetup-ssh /usr/src/initramfs/bin/cryptsetup-ssh
+cp /usr/lib64/libssh.so.4 /usr/src/initramfs/lib64/libssh.so.4
+cp /usr/lib64/libcrypto.so.3 /usr/src/initramfs/lib64/libcrypto.so.3
+cp /usr/lib64/libz.so.1 /usr/src/initramfs/lib64/libz.so.1
