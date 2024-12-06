@@ -26,7 +26,7 @@ dev-lang/rust system-llvm
 
 dev-libs/boehm-gc cxx
 dev-libs/boost context nls
-dev-libs/glib dbus
+dev-libs/glib dbus introspection
 dev-libs/serd -tools
 dev-libs/qcoro dbus
 dev-libs/qtkeychain qt6
