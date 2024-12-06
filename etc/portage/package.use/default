@@ -18,7 +18,7 @@ app-emulation/virt-manager gui
 app-office/libreoffice -base clang pdfimport kde qt6
 
 app-text/ghostscript-gpl cups
-app-text/poppler qt6 boost nss -jpeg2k -jpeg
+app-text/poppler qt6 boost nss -jpeg2k
 app-text/xmlto text
 
 dev-lang/python -gdbm
