@@ -6,7 +6,8 @@ mount -t proc none /proc
 mount -t sysfs none /sys
 
 # Rescue shell
-exec sh
+/bin/busybox --install -s
+exec /bin/sh
 
 # Clean up.
 umount /dev

@@ -119,7 +119,7 @@ USE="-pam" emerge --ask --oneshot sys-apps/busybox
 USE="-udev -readline" emerge --ask --oneshot sys-fs/lvm2
 USE="-udev -gcrypt -openssl -nls nettle ssh" emerge --ask --oneshot sys-fs/cryptsetup
 mkdir --parents /usr/src/initramfs/{bin,dev,etc,lib,lib64,mnt/root,proc,root,sbin,sys}
-mknod -m 622 /usr/src/initramfs/dev/console c 5 1
+cp --archive /dev/{null,console,tty} /usr/src/initramfs/dev/
 nano /usr/src/initramfs/init
 chmod +x /usr/src/initramfs/init
 lddtree /usr/bin/busybox
