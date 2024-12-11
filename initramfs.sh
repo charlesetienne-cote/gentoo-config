@@ -1,18 +1,10 @@
 #!/bin/busybox sh
 
 # Mount the /dev, /proc and /sys filesystems.
-mount -t devtmpfs none /dev
-mount -t proc none /proc
-mount -t sysfs none /sys
+mount -nt devtmpfs none /dev
+mount -nt proc none /proc
+mount -nt sysfs none /sys
+mount -nt tmpfs none /run
 
 # Rescue shell
-/bin/busybox --install -s
-exec /bin/sh
-
-# Clean up.
-umount /dev
-umount /proc
-umount /sys
-
-# Boot the real thing.
-exec switch_root /mnt/root /sbin/init
+exec /bin/busybox sh

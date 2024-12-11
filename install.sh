@@ -118,8 +118,8 @@ cp /usr/src/linux/arch/arm64/boot/Image /efi/EFI/vmlinuz.efi
 USE="-pam" emerge --ask --oneshot sys-apps/busybox
 USE="-udev -readline" emerge --ask --oneshot sys-fs/lvm2
 USE="-udev -gcrypt -openssl -nls nettle ssh" emerge --ask --oneshot sys-fs/cryptsetup
-mkdir --parents /usr/src/initramfs/{bin,dev,etc,lib,lib64,mnt/root,proc,root,sbin,sys}
-cp --archive /dev/{null,console,tty} /usr/src/initramfs/dev/
+mkdir --parents /usr/src/initramfs/{bin,dev,lib,lib64,mnt/root,proc,sys,run}
+cp --archive /dev/console /usr/src/initramfs/dev/
 nano /usr/src/initramfs/init
 chmod +x /usr/src/initramfs/init
 lddtree /usr/bin/busybox
@@ -142,3 +142,4 @@ cp /usr/bin/cryptsetup-ssh /usr/src/initramfs/bin/cryptsetup-ssh
 cp /usr/lib64/libssh.so.4 /usr/src/initramfs/lib64/libssh.so.4
 cp /usr/lib64/libcrypto.so.3 /usr/src/initramfs/lib64/libcrypto.so.3
 cp /usr/lib64/libz.so.1 /usr/src/initramfs/lib64/libz.so.1
+cp /usr/lib/gcc/aarch64-unknown-linux-gnu/13/libgcc_s.so.1 /usr/src/initramfs/lib64/libgcc_s.so.1
