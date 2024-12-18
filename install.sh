@@ -117,11 +117,15 @@ cp /usr/src/linux/arch/arm64/boot/Image /efi/EFI/vmlinuz.efi
 # 7- Create initramfs
 USE="-pam" emerge --ask --oneshot sys-apps/busybox
 USE="-udev -readline" emerge --ask --oneshot sys-fs/lvm2
-USE="-udev -gcrypt -openssl -nls nettle ssh" emerge --ask --oneshot sys-fs/cryptsetup
-mkdir --parents /usr/src/initramfs/{bin,dev,lib,lib64,mnt/root,proc,sys,run}
+USE="-udev -gcrypt -openssl -nls nettle" emerge --ask --oneshot sys-fs/cryptsetup
+USE="-pam -shadow -syslog -zlib" emerge --ask dropbear
+mkdir --parents /usr/src/initramfs/{bin,etc/dropbear,dev,lib,lib64,mnt/root,proc,sys,run}
 cp --archive /dev/console /usr/src/initramfs/dev/
+ln --symbolic busybox /usr/src/initramfs/bin/sh
 nano /usr/src/initramfs/init
+nano /usr/src/initramfs/bin/dhcp.sh
 chmod +x /usr/src/initramfs/init
+chmod +x /usr/src/initramfs/bin/dhcp.sh
 lddtree /usr/bin/busybox
 cp /usr/bin/busybox /usr/src/initramfs/bin/busybox
 lddtree /usr/bin/cryptsetup
@@ -137,9 +141,29 @@ cp /usr/lib64/libuuid.so.1 /usr/src/initramfs/lib64/libuuid.so.1
 cp /usr/lib64/libblkid.so.1 /usr/src/initramfs/lib64/libblkid.so.1
 cp /usr/lib64/libc.so.6 /usr/src/initramfs/lib64/libc.so.6
 cp /lib/ld-linux-aarch64.so.1 /usr/src/initramfs/lib/ld-linux-aarch64.so.1
-lddtree /usr/bin/cryptsetup-ssh
-cp /usr/bin/cryptsetup-ssh /usr/src/initramfs/bin/cryptsetup-ssh
-cp /usr/lib64/libssh.so.4 /usr/src/initramfs/lib64/libssh.so.4
-cp /usr/lib64/libcrypto.so.3 /usr/src/initramfs/lib64/libcrypto.so.3
-cp /usr/lib64/libz.so.1 /usr/src/initramfs/lib64/libz.so.1
 cp /usr/lib/gcc/aarch64-unknown-linux-gnu/13/libgcc_s.so.1 /usr/src/initramfs/lib64/libgcc_s.so.1
+lddtree /usr/bin/dropbear
+cp /usr/bin/dropbear /usr/src/initramfs/bin/dropbear
+cp /usr/lib64/libtomcrypt.so.1 /usr/src/initramfs/lib64/libtomcrypt.so.1
+cp /usr/lib64/libgmp.so.10 /usr/src/initramfs/lib64/libgmp.so.10
+cp /usr/lib64/libtommath.so.1 /usr/src/initramfs/lib64/libtommath.so.1
+cp /usr/lib64/libz.so.1 /usr/src/initramfs/lib64/libz.so.1
+cp /usr/lib64/libcrypt.so.2 /usr/src/initramfs/lib64/libcrypt.so.2
+cp /lib64/libnss_compat.so.2 /usr/src/initramfs/lib64/libnss_compat.so.2
+cp /lib64/libnss_files.so.2 /usr/src/initramfs/lib64/libnss_files.so.2
+echo "root:x:0:0:root:/root:/bin/sh" > /usr/src/initramfs/etc/passwd
+echo "root:*:::::::" > /usr/src/initramfs/etc/shadow
+echo "root:x:0:root" > /usr/src/initramfs/etc/group
+echo "/bin/sh" > /usr/src/initramfs/etc/shells
+chmod 640 /usr/src/initramfs/etc/shadow
+cat << EOF > /usr/src/initramfs/etc/nsswitch.conf
+passwd:	files
+shadow:	files
+group:	files
+EOF
+# Sur machine locale
+ssh-keygen -t rsa -f ~/.ssh/unlock_remote
+scp ~/.ssh/unlock_remote.pub root@192.168.122.125:/mnt/gentoo/
+# Sur serveur
+cp /unlock_remote.pub /usr/src/initramfs/root/.ssh/authorized_keys
+chmod 0600 /usr/src/initramfs/root/.ssh/authorized_keys
