@@ -104,13 +104,10 @@ eix-sync
 su charles
 update
 
-# 6- Install bootloader and kernel
+# 6- Installkernel
 emerge --ask --oneshot --quiet sys-kernel/gentoo-sources
-emerge --ask --oneshot --quiet sys-kernel/efibootmgr
-emerge --ask --oneshot sys-apps/dbus
 cd /usr/src/linux
 mkdir /efi/EFI
-efibootmgr --create --disk /dev/vda --label "Gentoo" --part 1 --loader "\EFI\bzImage.efi" -u "root=/dev/vda4 initrd=\EFI\initramfs.cpio rd.neednet=1 ip=dhcp"
 make -j6
 cp /usr/src/linux/arch/arm64/boot/Image /efi/EFI/vmlinuz.efi
 
