@@ -12,7 +12,7 @@ app-crypt/gnupg -wks
 app-editors/neovim -lto -nvimpager
 
 app-emulation/libvirt-glib introspection
-app-emulation/qemu gnutls
+app-emulation/qemu gnutls usb
 app-emulation/virt-manager gui
 
 app-office/libreoffice -base clang pdfimport kde qt6
