@@ -77,6 +77,18 @@
 ### tuple ### route:allow any any 0.0.0.0/0 any 0.0.0.0/0 in_IVPN!out_virbr0
 -A ufw-user-forward -i IVPN -o virbr0 -j ACCEPT
 
+### tuple ### allow any any 0.0.0.0/0 any 0.0.0.0/0 in_enp5s0
+-A ufw-user-input -i enp5s0 -j ACCEPT
+
+### tuple ### allow any any 0.0.0.0/0 any 0.0.0.0/0 out_enp5s0
+-A ufw-user-output -o enp5s0 -j ACCEPT
+
+### tuple ### route:allow any any 0.0.0.0/0 any 0.0.0.0/0 in_enp5s0!out_IVPN
+-A ufw-user-forward -i enp5s0 -o IVPN -j ACCEPT
+
+### tuple ### route:allow any any 0.0.0.0/0 any 0.0.0.0/0 in_IVPN!out_enp5s0
+-A ufw-user-forward -i IVPN -o enp5s0 -j ACCEPT
+
 ### END RULES ###
 
 ### LOGGING ###
