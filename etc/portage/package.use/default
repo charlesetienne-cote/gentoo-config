@@ -10,7 +10,7 @@ dev-build/cmake -ncurses
 dev-lang/python -gdbm
 dev-lang/rust system-llvm
 
-dev-libs/libtomcrypt -gmp -libtommath
+dev-libs/libtomcrypt -gmp
 
 dev-util/ccache -static-c++
 
