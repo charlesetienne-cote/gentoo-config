@@ -88,13 +88,14 @@ passwd charles
 nano /etc/portage/make.conf
 	MAKEOPTS="-j6"
 	EMERGE_DEFAULT_OPTS="--jobs 3"
-emerge --ask --oneshot --quiet dev-vcs/git app-admin/doas app-portage/eix sys-kernel/gentoo-sources
+emerge --ask --oneshot --quiet dev-vcs/git app-admin/doas app-portage/eix
 su charles
 cd
 mkdir Git
 cd Git
 git clone https://github.com/charlesetienne-cote/gentoo-config.git
 cd gentoo-config
+git switch RockPro64-Server
 exit
 cp /home/charles/Git/gentoo-config/etc/doas.conf /etc/doas.conf
 su charles
@@ -103,21 +104,10 @@ bash apply-config.sh
 exit
 rm -rf /var/db/repos/gentoo
 eix-sync
-su charles
-update
 
-# 6- Installkernel
-cd /usr/src/linux
-mkdir /efi/EFI
-make -j6
-cp /usr/src/linux/arch/arm64/boot/Image /efi/EFI/vmlinuz.efi
-
-# 7- Create initramfs
-USE="-pam" emerge --ask --oneshot sys-apps/busybox
-USE="-udev -readline" emerge --ask --oneshot sys-fs/lvm2
-USE="-udev -gcrypt -openssl -nls nettle" emerge --ask --oneshot sys-fs/cryptsetup
-USE="-pam -shadow -syslog -zlib" emerge --ask dropbear
-mkdir --parents /usr/src/initramfs/{bin,etc/dropbear,dev,lib,lib64,mnt/root,proc,sys,run}
+# 6- Create initramfs
+emerge --ask sys-apps/busybox sys-fs/cryptsetup net-misc/dropbear sys-kernel/gentoo-sources
+mkdir --parents /usr/src/initramfs/{bin,etc,dev,lib,lib64,mnt/root,proc,sys}
 cp --archive /dev/console /usr/src/initramfs/dev/
 ln --symbolic busybox /usr/src/initramfs/bin/sh
 nano /usr/src/initramfs/init
@@ -165,3 +155,9 @@ scp ~/.ssh/unlock_remote.pub root@192.168.122.125:/mnt/gentoo/
 # Sur serveur
 cp /unlock_remote.pub /usr/src/initramfs/root/.ssh/authorized_keys
 chmod 0600 /usr/src/initramfs/root/.ssh/authorized_keys
+
+# 7- Installkernel
+cd /usr/src/linux
+mkdir --parent /efi/EFI/BOOT
+make -j6
+cp /usr/src/linux/arch/arm64/boot/Image /efi/EFI/BOOT/BOOTAA64.EFI

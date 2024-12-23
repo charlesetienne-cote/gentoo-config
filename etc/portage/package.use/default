@@ -1,0 +1,27 @@
+app-crypt/gnupg -wks
+
+app-editors/neovim -lto -nvimpager
+
+dev-lang/python -gdbm
+dev-lang/rust system-llvm
+
+dev-util/ccache -static-c++
+
+dev-vcs/git -iconv -pcre -perl
+
+net-misc/dropbear -pam -shadow -syslog -zlib
+net-misc/networkmanager -concheck elogind -ppp -wext connection-sharing nftables dhcpcd -modemmanager
+
+sys-apps/busybox -pam
+sys-apps/net-tools -arp
+sys-apps/openrc sysv-utils -ncurses -sysvinit -netifrc
+
+sys-auth/pambase -passwdqc minimal
+
+sys-devel/gcc -jit -cet
+
+sys-fs/btrfs-progs -convert
+sys-fs/cryptsetup -udev -gcrypt -openssl -nls nettle
+sys-fs/lvm2 -udev -readline
+
+sys-kernel/gentoo-sources experimental
