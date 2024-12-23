@@ -1,3 +1,7 @@
+# VM setup
+virsh create /etc/libvirt/qemu/<vm-name>.xml
+virt-xml <DOMAIN> --edit --confirm --qemu-commandline '-accel thread=multi'
+
 # List of commands for new install from gentoo-install-media
 # 1- Get install media network connectivity
 ifconfig
@@ -84,8 +88,7 @@ passwd charles
 nano /etc/portage/make.conf
 	MAKEOPTS="-j6"
 	EMERGE_DEFAULT_OPTS="--jobs 3"
-emerge --ask --oneshot --quiet dev-vcs/git
-emerge --ask --oneshot --quiet app-admin/doas
+emerge --ask --oneshot --quiet dev-vcs/git app-admin/doas app-portage/eix sys-kernel/gentoo-sources
 su charles
 cd
 mkdir Git
@@ -98,14 +101,12 @@ su charles
 cd /home/charles/Git/gentoo-config
 bash apply-config.sh
 exit
-emerge --ask --oneshot --quiet app-portage/eix
 rm -rf /var/db/repos/gentoo
 eix-sync
 su charles
 update
 
 # 6- Installkernel
-emerge --ask --oneshot --quiet sys-kernel/gentoo-sources
 cd /usr/src/linux
 mkdir /efi/EFI
 make -j6
