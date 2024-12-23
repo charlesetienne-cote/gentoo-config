@@ -106,7 +106,7 @@ rm -rf /var/db/repos/gentoo
 eix-sync
 
 # 6- Create initramfs
-emerge --ask sys-apps/busybox sys-fs/cryptsetup net-misc/dropbear sys-kernel/gentoo-sources
+emerge --ask --quiet sys-apps/busybox sys-fs/cryptsetup net-misc/dropbear sys-kernel/gentoo-sources
 mkdir --parents /usr/src/initramfs/{bin,etc,dev,lib,lib64,mnt/root,proc,sys}
 cp --archive /dev/console /usr/src/initramfs/dev/
 ln --symbolic busybox /usr/src/initramfs/bin/sh

@@ -1,9 +1,16 @@
 app-crypt/gnupg -wks
+app-crypt/rhash -nls -ssl
+
+app-arch/libarchive -acl -bzip2 -e2fsprogs -iconv -lzma -xattr
 
 app-editors/neovim -lto -nvimpager
 
+dev-build/cmake -ncurses
+
 dev-lang/python -gdbm
 dev-lang/rust system-llvm
+
+dev-libs/libtomcrypt -gmp -libtommath
 
 dev-util/ccache -static-c++
 
