@@ -107,7 +107,7 @@ eix-sync
 
 # 6- Create initramfs
 emerge --ask --quiet sys-apps/busybox sys-fs/cryptsetup net-misc/dropbear sys-kernel/gentoo-sources
-mkdir --parents /usr/src/initramfs/{bin,etc,dev,lib,lib64,mnt/root,proc,sys}
+mkdir --parents /usr/src/initramfs/{bin,etc,dev,lib,lib64,mnt/root,proc,root/.ssh,sys}
 cp --archive /dev/console /usr/src/initramfs/dev/
 ln --symbolic busybox /usr/src/initramfs/bin/sh
 nano /usr/src/initramfs/init
@@ -116,6 +116,9 @@ chmod +x /usr/src/initramfs/init
 chmod +x /usr/src/initramfs/bin/dhcp.sh
 lddtree /usr/bin/busybox
 cp /usr/bin/busybox /usr/src/initramfs/bin/busybox
+cp /usr/lib64/libc.so.6 /usr/src/initramfs/lib64/libc.so.6
+cp /usr/lib64/libresolv.so.2 /usr/src/initramfs/lib64/libresolv.so.2
+cp /lib/ld-linux-aarch64.so.1 /usr/src/initramfs/lib/ld-linux-aarch64.so.1
 lddtree /usr/bin/cryptsetup
 cp /usr/bin/cryptsetup /usr/src/initramfs/bin/cryptsetup
 cp /usr/lib64/libcryptsetup.so.12 /usr/src/initramfs/lib64/libcryptsetup.so.12
@@ -127,9 +130,7 @@ cp /usr/lib64/libjson-c.so.5 /usr/src/initramfs/lib64/libjson-c.so.5
 cp /usr/lib64/libpopt.so.0 /usr/src/initramfs/lib64/libpopt.so.0
 cp /usr/lib64/libuuid.so.1 /usr/src/initramfs/lib64/libuuid.so.1
 cp /usr/lib64/libblkid.so.1 /usr/src/initramfs/lib64/libblkid.so.1
-cp /usr/lib64/libc.so.6 /usr/src/initramfs/lib64/libc.so.6
-cp /lib/ld-linux-aarch64.so.1 /usr/src/initramfs/lib/ld-linux-aarch64.so.1
-cp /usr/lib/gcc/aarch64-unknown-linux-gnu/13/libgcc_s.so.1 /usr/src/initramfs/lib64/libgcc_s.so.1
+cp /usr/lib/gcc/aarch64-unknown-linux-gnu/14/libgcc_s.so.1 /usr/src/initramfs/lib64/libgcc_s.so.1
 lddtree /usr/bin/dropbear
 cp /usr/bin/dropbear /usr/src/initramfs/bin/dropbear
 cp /usr/lib64/libtomcrypt.so.1 /usr/src/initramfs/lib64/libtomcrypt.so.1
