@@ -88,7 +88,7 @@ passwd charles
 nano /etc/portage/make.conf
 	MAKEOPTS="-j6"
 	EMERGE_DEFAULT_OPTS="--jobs 3"
-emerge --ask --oneshot --quiet dev-vcs/git app-admin/doas app-portage/eix
+emerge --ask --oneshot --quiet dev-vcs/git app-admin/doas app-portage/eix net-misc/chrony
 su charles
 cd
 mkdir Git
@@ -107,39 +107,42 @@ eix-sync
 
 # 6- Create initramfs
 emerge --ask --quiet sys-apps/busybox sys-fs/cryptsetup net-misc/dropbear sys-kernel/gentoo-sources
-mkdir --parents /usr/src/initramfs/{bin,etc,dev,lib,lib64,mnt/root,proc,root/.ssh,sys}
+mkdir --parents /usr/src/initramfs/{etc/dropbear,dev,mnt/root,proc,root/.ssh,sys,run,usr/bin,usr/lib,usr/lib64}
 cp --archive /dev/console /usr/src/initramfs/dev/
-ln --symbolic busybox /usr/src/initramfs/bin/sh
+ln --symbolic /usr/bin /usr/src/initramfs/bin
+ln --symbolic /usr/lib /usr/src/initramfs/lib
+ln --symbolic /usr/lib64 /usr/src/initramfs/lib64
+ln --symbolic busybox /usr/src/initramfs/usr/bin/sh
 nano /usr/src/initramfs/init
-nano /usr/src/initramfs/bin/dhcp.sh
+nano /usr/src/initramfs/usr/bin/dhcp.sh
 chmod +x /usr/src/initramfs/init
-chmod +x /usr/src/initramfs/bin/dhcp.sh
+chmod +x /usr/src/initramfs/usr/bin/dhcp.sh
 lddtree /usr/bin/busybox
-cp /usr/bin/busybox /usr/src/initramfs/bin/busybox
-cp /usr/lib64/libc.so.6 /usr/src/initramfs/lib64/libc.so.6
-cp /usr/lib64/libresolv.so.2 /usr/src/initramfs/lib64/libresolv.so.2
-cp /lib/ld-linux-aarch64.so.1 /usr/src/initramfs/lib/ld-linux-aarch64.so.1
+cp /usr/bin/busybox /usr/src/initramfs/usr/bin/busybox
+cp /usr/lib64/libc.so.6 /usr/src/initramfs/usr/lib64/libc.so.6
+cp /usr/lib64/libresolv.so.2 /usr/src/initramfs/usr/lib64/libresolv.so.2
+cp /lib/ld-linux-aarch64.so.1 /usr/src/initramfs/usr/lib/ld-linux-aarch64.so.1
 lddtree /usr/bin/cryptsetup
-cp /usr/bin/cryptsetup /usr/src/initramfs/bin/cryptsetup
-cp /usr/lib64/libcryptsetup.so.12 /usr/src/initramfs/lib64/libcryptsetup.so.12
-cp /usr/lib64/libdevmapper.so.1.02 /usr/src/initramfs/lib64/libdevmapper.so.1.02
-cp /usr/lib64/libm.so.6 /usr/src/initramfs/lib64/libm.so.6
-cp /usr/lib64/libnettle.so.8 /usr/src/initramfs/lib64/libnettle.so.8
-cp /usr/lib64/libargon2.so.1 /usr/src/initramfs/lib64/libargon2.so.1
-cp /usr/lib64/libjson-c.so.5 /usr/src/initramfs/lib64/libjson-c.so.5
-cp /usr/lib64/libpopt.so.0 /usr/src/initramfs/lib64/libpopt.so.0
-cp /usr/lib64/libuuid.so.1 /usr/src/initramfs/lib64/libuuid.so.1
-cp /usr/lib64/libblkid.so.1 /usr/src/initramfs/lib64/libblkid.so.1
-cp /usr/lib/gcc/aarch64-unknown-linux-gnu/14/libgcc_s.so.1 /usr/src/initramfs/lib64/libgcc_s.so.1
+cp /usr/bin/cryptsetup /usr/src/initramfs/usr/bin/cryptsetup
+cp /usr/lib64/libcryptsetup.so.12 /usr/src/initramfs/usr/lib64/libcryptsetup.so.12
+cp /usr/lib64/libdevmapper.so.1.02 /usr/src/initramfs/usr/lib64/libdevmapper.so.1.02
+cp /usr/lib64/libm.so.6 /usr/src/initramfs/usr/lib64/libm.so.6
+cp /usr/lib64/libnettle.so.8 /usr/src/initramfs/usr/lib64/libnettle.so.8
+cp /usr/lib64/libargon2.so.1 /usr/src/initramfs/usr/lib64/libargon2.so.1
+cp /usr/lib64/libjson-c.so.5 /usr/src/initramfs/usr/lib64/libjson-c.so.5
+cp /usr/lib64/libpopt.so.0 /usr/src/initramfs/usr/lib64/libpopt.so.0
+cp /usr/lib64/libuuid.so.1 /usr/src/initramfs/usr/lib64/libuuid.so.1
+cp /usr/lib64/libblkid.so.1 /usr/src/initramfs/usr/lib64/libblkid.so.1
+cp /usr/lib/gcc/aarch64-unknown-linux-gnu/14/libgcc_s.so.1 /usr/src/initramfs/usr/lib64/libgcc_s.so.1
 lddtree /usr/bin/dropbear
-cp /usr/bin/dropbear /usr/src/initramfs/bin/dropbear
-cp /usr/lib64/libtomcrypt.so.1 /usr/src/initramfs/lib64/libtomcrypt.so.1
-cp /usr/lib64/libgmp.so.10 /usr/src/initramfs/lib64/libgmp.so.10
-cp /usr/lib64/libtommath.so.1 /usr/src/initramfs/lib64/libtommath.so.1
-cp /usr/lib64/libz.so.1 /usr/src/initramfs/lib64/libz.so.1
-cp /usr/lib64/libcrypt.so.2 /usr/src/initramfs/lib64/libcrypt.so.2
-cp /lib64/libnss_compat.so.2 /usr/src/initramfs/lib64/libnss_compat.so.2
-cp /lib64/libnss_files.so.2 /usr/src/initramfs/lib64/libnss_files.so.2
+cp /usr/bin/dropbear /usr/src/initramfs/usr/bin/dropbear
+cp /usr/lib64/libtomcrypt.so.1 /usr/src/initramfs/usr/lib64/libtomcrypt.so.1
+cp /usr/lib64/libgmp.so.10 /usr/src/initramfs/usr/lib64/libgmp.so.10
+cp /usr/lib64/libtommath.so.1 /usr/src/initramfs/usr/lib64/libtommath.so.1
+cp /usr/lib64/libz.so.1 /usr/src/initramfs/usr/lib64/libz.so.1
+cp /usr/lib64/libcrypt.so.2 /usr/src/initramfs/usr/lib64/libcrypt.so.2
+cp /lib64/libnss_compat.so.2 /usr/src/initramfs/usr/lib64/libnss_compat.so.2
+cp /lib64/libnss_files.so.2 /usr/src/initramfs/usr/lib64/libnss_files.so.2
 echo "root:x:0:0:root:/root:/bin/sh" > /usr/src/initramfs/etc/passwd
 echo "root:*:::::::" > /usr/src/initramfs/etc/shadow
 echo "root:x:0:root" > /usr/src/initramfs/etc/group

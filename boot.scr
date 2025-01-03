@@ -1,0 +1,4 @@
+setenv bootargs clk_ignore_unused pd_ignore_unused coherent_pool=1M console=tty1 console=ttyS2,115200n8 earlycon=uart8250,mmio32,0xff1a0000
+fatload mmc 0:3 ${fdt_addr_r} /EFI/BOOT/RKPRO64.DTB
+fatload mmc 0:3 ${kernel_addr_r} /EFI/BOOT/BOOTAA64.EFI
+bootefi ${kernel_addr_r} ${fdt_addr_r}
