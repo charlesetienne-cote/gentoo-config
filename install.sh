@@ -165,3 +165,6 @@ cd /usr/src/linux
 mkdir --parent /efi/EFI/BOOT
 make -j6
 cp /usr/src/linux/arch/arm64/boot/Image /efi/EFI/BOOT/BOOTAA64.EFI
+
+# 8- After booting
+emerge --ask --emptytree --usepkg=n @world
