@@ -7,59 +7,43 @@ virt-xml <DOMAIN> --edit --confirm --qemu-commandline '-accel thread=multi'
 ifconfig
 dhcpcd enp1s0
 nano /etc/resolv.conf
+passwd root
+/etc/init.d/sshd start
 # nameserver 9.9.9.9
 
 # 2- Preparing the disk
 lsblk -o name,label,partlabel,size,mountpoint
-gdisk /dev/vda
+gdisk /dev/nvme0n1
 	o
 		y
-	x
-		l
-			1
-		m
 	n
 		1
-		64
-		16383
-		ffffffff-ffff-ffff-ffff-ffffffffffff
-	c
-		1
-		UBoot TPL SPL
-	n
-		2
-		16384
-		32767
-		ffffffff-ffff-ffff-ffff-ffffffffffff
-	c
-		2
-		UBoot Core
-	x
-		l
-			2048
-		m
-	n
-		3
-		32768
-		+128M
+		2048
+		+4M
 		ef00
+	c
+		1
+		EFI system partition
 	n
-		4
-		294912
+		2
+		<default>
 		<default>
 		8309
+	c
+		2
+		Linux LUKS
 	w
 		y
-mkfs.fat -v -F 16 -n "ESP" /dev/vda3
-cryptsetup luksFormat --type luks2 /dev/vda4
-cryptsetup --allow-discards --perf-no_read_workqueue --perf-no_write_workqueue --persistent open /dev/vda4 CryptRoot
-mkfs.btrfs --verbose --label "Gentoo Linux" --data dup --metadata dup /dev/mapper/CryptRoot
+mkfs.fat -v -F 12 -n "ESP" /dev/nvmen1p1
+cryptsetup luksFormat --type luks2 --pbkdf pbkdf2 /dev/nvmen1p2
+cryptsetup --allow-discards --perf-no_read_workqueue --perf-no_write_workqueue --persistent open /dev/nvmen1p2 CryptRoot
+mkfs.btrfs --verbose --label "Gentoo Linux" --data single --metadata dup /dev/mapper/CryptRoot
 mount --types btrfs --options noacl,autodefrag,compress-force=zstd,datacow,datasum,discard=async,space_cache=v2,ssd_spread,noatime,rw,suid,dev,exec,auto,nouser,async /dev/mapper/CryptRoot /mnt/gentoo
 mkdir --parents /mnt/gentoo/efi
 mount --types vfat --options discard,utf8,noatime,rw,nosuid,nodev,noexec,auto,nouser,async /dev/vda3 /mnt/gentoo/efi
 
 # 3- Installing the Gentoo files
-# See https://distfiles.gentoo.org/releases/arm64/autobuilds/current-stage3-arm64-openrc/
+# See https://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-nomultilib-openrc/
 wget <Stage 3 URL>
 wget <Stage 3 asc URL>
 gpg --import /usr/share/openpgp-keys/gentoo-release.asc
