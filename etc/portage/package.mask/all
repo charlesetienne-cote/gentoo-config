@@ -1,4 +1,4 @@
-dev-lang/python:3.13
+>=dev-lang/python-3.13
 dev-lang/rust-bin
 <sys-devel/llvm-18
 >=sys-devel/llvm-20
